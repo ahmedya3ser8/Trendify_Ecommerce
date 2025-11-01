@@ -1,0 +1,30 @@
+<header class="fixed left-0 top-0 w-full z-999 bg-white py-4">
+  <div class="container">
+    <div class="flex justify-between items-center">
+      <div class="logo">
+        <a routerLink="/home" class="text-3xl text-main-color font-medium cursor-pointer"> Trendify </a>
+      </div>
+      <ul class="flex items-center space-x-4">
+        @for (item of menuItems(); track $index) {
+          <li>
+            <a [routerLink]="item.link" routerLinkActive="text-main-color font-medium" class="text-gray-400 transition duration-300"> {{item.text}} </a>
+          </li>
+        }
+      </ul>
+      <ul class="flex items-center space-x-4">
+        <li>
+          <a routerLink="/products/fav" class="text-main-color relative">
+            <i class="fa-regular fa-heart text-2xl"></i>
+            <span class="absolute -top-2 -right-1 text-xs bg-main-color text-white size-5 rounded-full border border-white flex items-center justify-center">2</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/cart" class="text-main-color relative">
+            <i class="fa-solid fa-cart-shopping text-2xl"></i>
+            <span class="absolute -top-2 -right-1 text-xs bg-main-color text-white size-5 rounded-full border border-white flex items-center justify-center">2</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,5 @@
+.discover {
+  background-image: linear-gradient(#0009,#0009),url('/images/discover.webp');
+  background-size: cover;
+  background-position: top;
+}

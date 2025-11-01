@@ -1,0 +1,66 @@
+<footer class="bg-[#2e2e2e] py-10">
+  <div class="container">
+    <div class="grid grid-cols-5 gap-14 text-white">
+      <div class="col col-span-2 flex flex-col gap-4">
+        <h2 class="text-4xl font-semibold">Trendify</h2>
+        <p class="text-gray-400 text-sm">Join Our newsletter to stay up to date on feautres and releases.</p>
+        <div class="flex items-center gap-4">
+          <input type="text" class="w-full bg-white text-gray-500 p-2 border border-main-color outline-none rounded-lg" placeholder="Enter Your Email" />
+          <button class="p-2 bg-main-color text-white border border-white rounded-lg">Subscribe</button>
+        </div>
+        <p class="text-sm">
+          By Subscribeing you agree to with our Privacy Policy and provide consent to receive updates from our company
+        </p>
+      </div>
+      @for (menu of menuItems(); track $index) {
+        <div class="col">
+          <h2 class="font-semibold mb-3"> {{menu.label}} </h2>
+          <ul class="flex flex-col gap-3">
+            @for (item of menu.items; track $index) {
+              <li>
+                <a class="cursor-pointer"> {{item.text}} </a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+      <div class="col">
+        <h2 class="font-semibold mb-3">Follow Us</h2>
+        <ul class="flex flex-col gap-3">
+          <li>
+            <a class="cursor-pointer">
+              <i class="fa-brands fa-facebook me-2"></i>
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a class="cursor-pointer">
+              <i class="fa-brands fa-instagram me-2"></i>
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a class="cursor-pointer">
+              <i class="fa-brands fa-twitter me-2"></i>
+              Twitter
+            </a>
+          </li>
+          <li>
+            <a class="cursor-pointer">
+              <i class="fa-brands fa-linkedin me-2"></i>
+              Linkedin
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright flex justify-between items-center gap-4 text-gray-400 text-sm mt-6">
+      <p>© {{year}} Trendify. All right reserved</p>
+      <ul class="flex items-center gap-4 text-xs">
+        <li class="cursor-pointer">Privacy Policy</li>
+        <li class="cursor-pointer">Terms of Services</li>
+        <li class="cursor-pointer">Cookies Setting</li>
+      </ul>
+    </div>
+  </div>
+</footer>
