@@ -6,10 +6,13 @@ import { NewCollectionComponent } from "./components/new-collection/new-collecti
 import { DiscoverComponent } from "./components/discover/discover.component";
 import { ServicesComponent } from "./components/services/services.component";
 import { TestimonialsComponent } from "./components/testimonials/testimonials.component";
+import { FlashSaleComponent } from "./components/flash-sale/flash-sale.component";
+import { TopProductsComponent } from "./components/top-products/top-products.component";
+import { BestSellingComponent } from "./components/best-selling/best-selling.component";
 
 @Component({
   selector: 'app-home',
-  imports: [HeroComponent, CategoriesComponent, NewCollectionComponent, DiscoverComponent, ServicesComponent, TestimonialsComponent],
+  imports: [HeroComponent, CategoriesComponent, NewCollectionComponent, DiscoverComponent, ServicesComponent, TestimonialsComponent, FlashSaleComponent, TopProductsComponent, BestSellingComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

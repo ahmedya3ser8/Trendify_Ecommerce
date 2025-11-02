@@ -1,0 +1,28 @@
+<section class="py-14">
+  <div class="container">
+    <app-main-title
+      [title]="'Products'"
+      [description]="'Best Selling Product'"
+    />
+    <ul class="flex space-x-4 bg-[#eee] w-fit mx-auto py-2 px-4 rounded-3xl mb-6">
+      @for (category of categoryList(); track $index) {
+        <li
+          [class.active]="categoryId() === category.catId"
+          (click)="selectedCategroyId(category.catId)"
+          class="py-1.5 px-5 rounded-3xl cursor-pointer transition duration-300"
+        >
+          {{category.catName}}
+        </li>
+      }
+    </ul>
+    <div class="grid grid-cols-4 gap-6">
+      @for (product of productList(); track product._id) {
+        <app-product-item [product]="product" />
+      }
+    </div>
+    <button routerLink="/products" class="block mx-auto mt-6 border border-main rounded-3xl py-2.5 px-6 cursor-pointer transition duration-300 hover:bg-main hover:text-white">
+      See All
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+</section>

@@ -7,7 +7,7 @@
     <div class="grid grid-cols-3 gap-6">
       @for (item of testimonilasItems(); track $index) {
         <div class="col bg-white p-5 rounded-md shadow flex flex-col gap-4">
-          <span class="text-4xl text-main-color">
+          <span class="text-4xl text-main">
             <i class="fa-solid fa-quote-left"></i>
           </span>
           <p class="text-gray-300"> {{item.description}} </p>
@@ -16,7 +16,7 @@
               <img src="/images/customer.png" class="size-10 rounded-full" alt="customer" />
             </div>
             <div class="flex-1 flex justify-between items-center">
-              <h3 class="text-[#090F41] font-medium text-lg"> {{item.userName}} </h3>
+              <h3 class="text-secondary font-medium text-lg"> {{item.userName}} </h3>
               <div class="star">
                 <i class="fa-solid fa-star text-yellow-600"></i>
                 {{item.rate}}

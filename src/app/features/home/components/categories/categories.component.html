@@ -1,54 +1,16 @@
 <section class="py-14">
   <div class="container">
-    <div class="grid grid-cols-8 gap-6">
-      <div class="col text-center">
-        <div class="image h-36 w-36 mx-auto">
-          <img src="https://ecommerce.routemisr.com/Route-Academy-categories/1681511865180.jpeg" class="w-full h-full object-cover rounded-full" alt="category" />
-        </div>
-        <h3 class="text-[#090F41] font-medium">asf</h3>
-      </div>
-      <div class="col text-center">
-        <div class="image h-36 w-36 mx-auto">
-          <img src="https://ecommerce.routemisr.com/Route-Academy-categories/1681511865180.jpeg" class="w-full h-full object-cover rounded-full" alt="category" />
-        </div>
-        <h3 class="text-[#090F41] font-medium">asf</h3>
-      </div>
-      <div class="col text-center">
-        <div class="image h-36 w-36 mx-auto">
-          <img src="https://ecommerce.routemisr.com/Route-Academy-categories/1681511865180.jpeg" class="w-full h-full object-cover rounded-full" alt="category" />
-        </div>
-        <h3 class="text-[#090F41] font-medium">asf</h3>
-      </div>
-      <div class="col text-center">
-        <div class="image h-36 w-36 mx-auto">
-          <img src="https://ecommerce.routemisr.com/Route-Academy-categories/1681511865180.jpeg" class="w-full h-full object-cover rounded-full" alt="category" />
-        </div>
-        <h3 class="text-[#090F41] font-medium">asf</h3>
-      </div>
-      <div class="col text-center">
-        <div class="image h-36 w-36 mx-auto">
-          <img src="https://ecommerce.routemisr.com/Route-Academy-categories/1681511865180.jpeg" class="w-full h-full object-cover rounded-full" alt="category" />
-        </div>
-        <h3 class="text-[#090F41] font-medium">asf</h3>
-      </div>
-      <div class="col text-center">
-        <div class="image h-36 w-36 mx-auto">
-          <img src="https://ecommerce.routemisr.com/Route-Academy-categories/1681511865180.jpeg" class="w-full h-full object-cover rounded-full" alt="category" />
-        </div>
-        <h3 class="text-[#090F41] font-medium">asf</h3>
-      </div>
-      <div class="col text-center">
-        <div class="image h-36 w-36 mx-auto">
-          <img src="https://ecommerce.routemisr.com/Route-Academy-categories/1681511865180.jpeg" class="w-full h-full object-cover rounded-full" alt="category" />
-        </div>
-        <h3 class="text-[#090F41] font-medium">asf</h3>
-      </div>
-      <div class="col text-center">
-        <div class="image h-36 w-36 mx-auto">
-          <img src="https://ecommerce.routemisr.com/Route-Academy-categories/1681511865180.jpeg" class="w-full h-full object-cover rounded-full" alt="category" />
-        </div>
-        <h3 class="text-[#090F41] font-medium">asf</h3>
-      </div>
-    </div>
+    <swiper-container #swiperCategories init="false">
+      @for (category of categoryList(); track category._id) {
+        <swiper-slide>
+          <div class="col text-center flex flex-col gap-3">
+            <div class="image h-36 w-36 mx-auto">
+              <img [src]="category.image" class="w-full h-full object-cover rounded-full" alt="category" />
+            </div>
+            <h3 class="text-secondary font-medium"> {{category.name}} </h3>
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
   </div>
 </section>

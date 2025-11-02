@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import 'swiper/swiper-bundle.css';
 
 @utility container {
   margin-inline: auto;
@@ -6,7 +7,8 @@
 }
 
 @theme {
-  --color-main-color: #8B5E35;
+  --color-main: #8B5E35;
+  --color-secondary: #090F41;
   --font-caveat: "Caveat", cursive;
 }
 
