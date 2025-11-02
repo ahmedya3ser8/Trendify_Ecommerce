@@ -1,0 +1,3 @@
+:host ::ng-deep .p-floatlabel-on:has(.p-inputwrapper-filled) label {
+  padding: 8px !important;
+}

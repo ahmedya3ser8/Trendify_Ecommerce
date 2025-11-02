@@ -16,3 +16,62 @@ body {
   font-family: "Poppins", serif;
   background: #F6F6F6;
 }
+
+/* inputs + float label + select */
+.floating-label-group {
+  position: relative;
+}
+
+.floating-label {
+  position: absolute;
+  inset-inline-start: .75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #090F41;
+  transition: all 0.2s ease-in-out;
+  pointer-events: none;
+  background: transparent;
+  font-size: 14px;
+}
+
+.floating-input:focus + .floating-label,
+.floating-input:not(:placeholder-shown) + .floating-label  {
+  top: 0;
+  transform: translateY(-50%);
+  color: #090F41;
+  padding: 0 8px;
+  background-color: white;
+}
+
+.floating-input {
+  width: 100%;
+  padding: .75rem;
+  height: 3rem;
+  border: 1px solid #8B5E35;
+  background-color: #fff;
+  outline: none;
+  border-radius: 6px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.floating-input:focus {
+  border-color: #613710;
+}
+
+.toggle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  inset-inline-end: 12px;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.p-select {
+  border: 1px solid #8B5E35 !important;
+  width: 100%;
+  height: 3rem !important;
+  align-items: center;
+  background: #fff !important;
+}

@@ -1,1 +1,45 @@
-<p>contact-us works!</p>
+<section class="hero py-10 mt-16">
+  <div class="container">
+    <div class="mian_title flex flex-col gap-4 mb-8">
+      <h2 class="text-secondary text-4xl font-bold">Contact me</h2>
+      <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sequi ad unde.</p>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-[70%] flex flex-col gap-6">
+      <div class="flex gap-6">
+        <div class="floating-label-group w-1/2">
+          <input type="text" id="firstName" formControlName="firstName" class="floating-input" placeholder=" " />
+          <label for="firstName" class="floating-label"> First name </label>
+        </div>
+        <div class="floating-label-group w-1/2">
+          <input type="text" id="lastName" formControlName="lastName" class="floating-input" placeholder=" " />
+          <label for="lastName" class="floating-label"> Last name </label>
+        </div>
+      </div>
+      <div class="flex gap-6">
+        <div class="floating-label-group w-1/2">
+          <input type="email" id="email" formControlName="email" class="floating-input" placeholder=" " />
+          <label for="email" class="floating-label"> Email </label>
+        </div>
+        <div class="floating-label-group w-1/2">
+          <input type="tel" id="phoneNumber" formControlName="phoneNumber" class="floating-input" placeholder=" " />
+          <label for="phoneNumber" class="floating-label"> Phone number </label>
+        </div>
+      </div>
+      <p-floatlabel class="w-full" variant="on">
+        <p-select inputId="topics" formControlName="topic" [options]="topics" optionLabel="name" optionValue="code" />
+        <label for="topics" class="text-secondary!">Choose a topic</label>
+      </p-floatlabel>
+      <div class="floating-label-group">
+        <textarea id="message" formControlName="message" class="floating-input h-[110px]! resize-none" placeholder=" "></textarea>
+        <label for="message" class="floating-label"> Message </label>
+      </div>
+      <div class="flex items-center space-x-3">
+        <input type="checkbox" formControlName="acceptTerms" class="size-5 accent-main" id="accept-terms" />
+        <label for="accept-terms" class="text-secondary cursor-pointer">i accept the terms</label>
+      </div>
+      <button type="submit" class="bg-main text-white h-10 rounded-full w-40 transition duration-300 hover:bg-[#764a21] cursor-pointer"> submit </button>
+    </form>
+  </div>
+</section>
+
+<app-subscription />
