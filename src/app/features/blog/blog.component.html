@@ -1,1 +1,25 @@
-<p>blog works!</p>
+<section class="hero py-10 mt-16">
+  <div class="container">
+    <div class="main_title text-center mb-8">
+      <h1 class="text-secondary text-4xl font-bold mb-4">Blog</h1>
+      <p class="text-sm text-gray-400 font-medium">Make your best moments more stylish with our latest designs of clothing.</p>
+    </div>
+    <div class="grid grid-cols-3 gap-10 p-5">
+      @for (blog of blogList(); track $index) {
+        <div class="blog shadow-md transition duration-700 hover:-translate-y-4">
+          <div class="image">
+            <img [src]="blog.image" class="w-full" alt="blog" />
+          </div>
+          <div class="content bg-white text-gray-500 p-5 flex flex-col gap-4">
+            <div class="flex justify-between items-center">
+              <span> {{blog.category}} </span>
+              <span> {{blog.date | date }} </span>
+            </div>
+            <h3 class="text-secondary text-xl font-bold"> {{blog.title}} </h3>
+            <p class="text-sm"> {{blog.description}} </p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
