@@ -1,0 +1,17 @@
+<section class="py-14">
+  <div class="main_title text-center flex flex-col gap-4 mb-8">
+    <h2 class="text-secondary text-4xl flex justify-center space-x-4">
+      <span><i class="fa-brands fa-instagram"></i></span>
+      <span class="text-main italic font-bold">#iconic_fashion</span>
+      <span class="font-bold">On Instagram</span>
+    </h2>
+    <p class="text-gray-400 text-sm">Phasellus lorem malesuada ligula pulvinar commodo maecenas</p>
+  </div>
+  <div class="grid grid-cols-5">
+    @for (item of imgList(); track $index) {
+      <div class="col">
+        <img [src]="item" class="w-full h-full object-cover" alt="fashion" />
+      </div>
+    }
+  </div>
+</section>

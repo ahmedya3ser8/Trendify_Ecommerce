@@ -1,0 +1,20 @@
+<section class="py-14">
+  <div class="container">
+    <div [class]="{
+      'flex-row-reverse': reverse()
+    }" class="flex items-center gap-10">
+      <div class="content w-1/2 pe-6">
+        <h2 class="text-secondary text-3xl font-bold mb-4"> {{title()}} </h2>
+        <p class="text-gray-400 text-lg">
+          Maecenas congue metus id turpis iaculis mattis. Sed pellentesque id arcu id scelerisque.
+          Ut ullamcorper rutrum justo, at blandit eros maximus ut. Integer non tincidunt justo,
+          rhoncus Aenean venenatis sed purus ac sollicitudin. Nulla mauris risus,
+          commodo et luctus rutrum, lobortis sed mauris. Integer congue, sem elementum varius tristique.
+        </p>
+      </div>
+      <div class="image w-1/2">
+        <img [src]="image()" loading="lazy" class="w-full object-cover" alt="online-shopping" />
+      </div>
+    </div>
+  </div>
+</section>
