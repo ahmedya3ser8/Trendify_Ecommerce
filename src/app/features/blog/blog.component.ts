@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { SubscriptionComponent } from "@shared/components/subscription/subscription.component";
 
 @Component({
   selector: 'app-blog',
-  imports: [DatePipe],
+  imports: [DatePipe, SubscriptionComponent],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
