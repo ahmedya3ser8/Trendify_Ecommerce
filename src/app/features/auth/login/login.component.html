@@ -1,1 +1,39 @@
-<p>login works!</p>
+<section>
+  <div class="flex h-screen">
+    <div class="col w-1/2 flex flex-col justify-center px-20">
+      <div class="main_title flex flex-col gap-2 mb-8">
+        <h2 class="text-secondary text-3xl font-bold">Welcome Back!</h2>
+        <p class="text-gray-400 text-sm">Please log in or sign up to continue using our app.</p>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="submitForm()" class="flex flex-col gap-6">
+        <app-basic-input
+          [id]="'email'"
+          [type]="'email'"
+          [label]="'Email'"
+          [control]="form.get('email')"
+          formControlName="email"
+          [errors]="{
+            'required': 'email is required',
+            'email': 'enter valid email'
+          }"
+        />
+        <app-basic-input
+          [id]="'password'"
+          [label]="'Password'"
+          [control]="form.get('password')"
+          formControlName="password"
+          [maskPassword]="true"
+          [errors]="{
+            'required': 'password is required'
+          }"
+        />
+        <button type="submit" class="btn"> Login </button>
+      </form>
+      <p class="mt-2.5 text-center">
+        Don't have an account ?
+        <a routerLink="/auth/register" class="text-main underline cursor-pointer">Register</a>
+      </p>
+    </div>
+    <app-auth-slider class="w-1/2" />
+  </div>
+</section>

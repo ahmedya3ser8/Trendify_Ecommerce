@@ -8,6 +8,7 @@
       <div class="flex gap-6">
         <app-basic-input
           [id]="'firstName'"
+          [type]="'text'"
           [label]="'First Name'"
           [control]="form.get('firstName')"
           formControlName="firstName"
@@ -18,6 +19,7 @@
         />
         <app-basic-input
           [id]="'lastName'"
+          [type]="'text'"
           [label]="'Last Name'"
           [control]="form.get('lastName')"
           formControlName="lastName"
@@ -75,7 +77,7 @@
         <input type="checkbox" formControlName="acceptTerms" class="size-5 accent-main" id="accept-terms" />
         <label for="accept-terms" [class.!text-red-500]="form.get('acceptTerms')?.errors && form.get('acceptTerms')?.touched" class="text-secondary cursor-pointer">i accept the terms</label>
       </div>
-      <button type="submit" class="bg-main text-white h-10 rounded-full w-40 transition duration-300 hover:bg-[#764a21] cursor-pointer"> submit </button>
+      <button type="submit" class="btn w-40"> submit </button>
     </form>
   </div>
 </section>

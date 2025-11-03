@@ -1,0 +1,13 @@
+<swiper-container #swiperAuth init="false">
+  @for (item of itemsList(); track $index) {
+    <swiper-slide>
+      <div class="col h-screen relative">
+        <img [src]="item" class="w-full h-full object-cover" alt="slider" />
+        <div class="content absolute inset-0 text-white flex flex-col gap-2 justify-end items-center bottom-[30%]">
+          <h3 class="text-2xl font-bold">Welcome to Trendify</h3>
+          <p class="text-sm">Discover the latest trends, <br/> express your unique style.</p>
+        </div>
+      </div>
+    </swiper-slide>
+  }
+</swiper-container>

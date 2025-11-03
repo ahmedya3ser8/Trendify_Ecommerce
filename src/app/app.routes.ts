@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { authGuard } from '@core/guards/auth.guard';
+import { isLoggedInGuard } from '@core/guards/is-logged-in.guard';
 import { AuthLayoutsComponent } from '@core/layouts/auth-layouts/auth-layouts.component';
 import { MainLayoutsComponent } from '@core/layouts/main-layouts/main-layouts.component';
 
@@ -12,11 +14,13 @@ export const appRoutes: Routes = [
   {
     path: 'auth',
     component: AuthLayoutsComponent,
+    canActivate: [isLoggedInGuard],
     loadChildren: () => import('./features/auth/auth.routes').then(r => r.authRoutes)
   },
   {
     path: '',
     component: MainLayoutsComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'home',

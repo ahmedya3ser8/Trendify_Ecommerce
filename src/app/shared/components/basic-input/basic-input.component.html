@@ -1,6 +1,6 @@
 <div class="floating-label-group">
   <input
-    [type]="type()"
+    [type]="type() || (flag() ? 'text' : 'password')"
     [id]="id()"
     [value]="value"
     (input)="onChange($any($event.target).value)"
@@ -16,6 +16,15 @@
   >
     {{label()}}
   </label>
+  @if (maskPassword()) {
+    <span (click)="togglePassword()" class="toggle">
+      @if (!flag()) {
+        <i class="fa-solid fa-eye"></i>
+      } @else {
+        <i class="fa-solid fa-eye-slash"></i>
+      }
+    </span>
+  }
 </div>
 
 @if (control()?.touched && control()?.errors) {

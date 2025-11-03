@@ -12,6 +12,12 @@
   --font-caveat: "Caveat", cursive;
 }
 
+@layer components {
+  .btn {
+    @apply bg-main text-white h-12 rounded-full cursor-pointer transition duration-300 hover:bg-[#764a21]
+  }
+}
+
 body {
   font-family: "Poppins", serif;
   background: #F6F6F6;
@@ -52,6 +58,10 @@ body {
   outline: none;
   border-radius: 6px;
   transition: border-color 0.2s ease-in-out;
+}
+
+.floating-input:autofill {
+  background: #fff;
 }
 
 .floating-input:focus {

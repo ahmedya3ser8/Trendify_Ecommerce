@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,8 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  private readonly router = inject(Router);
+  private readonly cookieService = inject(CookieService);
   menuItems = signal([
     {
       text: 'Home',
@@ -29,5 +32,9 @@ export class HeaderComponent {
       text: 'Contact Us',
       link: '/contact-us'
     },
-  ])
+  ]);
+  logout(): void {
+    this.cookieService.delete('access_token');
+    this.router.navigateByUrl('/auth/login');
+  }
 }
