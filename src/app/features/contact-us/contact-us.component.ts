@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Select } from 'primeng/select';
 import { FloatLabel } from "primeng/floatlabel"
 import { SubscriptionComponent } from "@shared/components/subscription/subscription.component";
+import { BasicInputComponent } from "@shared/components/basic-input/basic-input.component";
 
 interface ITopic {
   name: string;
@@ -12,7 +13,7 @@ interface ITopic {
 
 @Component({
   selector: 'app-contact-us',
-  imports: [Select, FloatLabel, ReactiveFormsModule, SubscriptionComponent],
+  imports: [Select, FloatLabel, ReactiveFormsModule, SubscriptionComponent, BasicInputComponent],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css'
 })
@@ -33,16 +34,25 @@ export class ContactUsComponent implements OnInit {
   }
   initForm(): void {
     this.form = this.fb.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      email: [null, [Validators.required]],
-      phoneNumber: [null, [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]],
       topic: [null, [Validators.required]],
-      message: [null, [Validators.required]],
+      message: ['', [Validators.required]],
       acceptTerms: [false, [Validators.requiredTrue]]
     })
   }
   submitForm(): void {
-    console.log(this.form.value);
+    if (this.form.valid) {
+      console.log(this.form.value);
+      this.form.reset();
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+  isFieldInvalid(field: string): boolean {
+    const control: AbstractControl | null = this.form.get(field);
+    return !!(control?.errors && control?.touched);
   }
 }

@@ -1,1 +1,29 @@
-<p>basic-input works!</p>
+<div class="floating-label-group">
+  <input
+    [type]="type()"
+    [id]="id()"
+    [value]="value"
+    (input)="onChange($any($event.target).value)"
+    (blur)="onTouched()"
+    class="floating-input"
+    [class.!border-red-500]="control()?.touched && control()?.errors"
+    placeholder=" "
+  />
+  <label
+    [for]="id()"
+    class="floating-label"
+    [class.!text-red-500]="control()?.touched && control()?.errors"
+  >
+    {{label()}}
+  </label>
+</div>
+
+@if (control()?.touched && control()?.errors) {
+  @for (key of objectKeys; track $index) {
+    @if (control()?.getError(key)) {
+      <p class="text-red-500 text-sm mt-1 lowercase">
+        {{ errors()[key] }}
+      </p>
+    }
+  }
+}
