@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LoadingService } from '@core/services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,8 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
+  private readonly loadingService = inject(LoadingService);
+  get isLoading(): boolean {
+    return this.loadingService.isLoading();
+  }
 }

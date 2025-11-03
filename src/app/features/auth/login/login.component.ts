@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { BasicInputComponent } from "@shared/components/basic-input/basic-input.component";
 import { AuthService } from '../services/auth.service';
 import { AuthSliderComponent } from "@shared/components/auth-slider/auth-slider.component";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly cookieService = inject(CookieService);
+  private readonly toastrService = inject(ToastrService);
   form!: FormGroup;
   ngOnInit(): void {
     this.initForm();
@@ -36,6 +38,7 @@ export class LoginComponent {
           if (res.message === 'success') {
             console.log(res);
             this.cookieService.set('access_token', res.token);
+            this.toastrService.success('Welcome back! You’ve logged in successfully.')
             this.router.navigateByUrl('/home');
           }
         }

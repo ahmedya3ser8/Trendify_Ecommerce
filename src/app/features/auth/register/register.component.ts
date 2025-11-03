@@ -6,6 +6,7 @@ import { ValidationService } from '@core/services/validation.service';
 import { AuthSliderComponent } from "@shared/components/auth-slider/auth-slider.component";
 import { BasicInputComponent } from "@shared/components/basic-input/basic-input.component";
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly toastrService = inject(ToastrService);
   form!: FormGroup;
   ngOnInit(): void {
     this.initForm();
@@ -37,6 +39,7 @@ export class RegisterComponent implements OnInit {
         next: (res) => {
           console.log(res);
           if (res.message === 'success') {
+            this.toastrService.success('Account created successfully! Glad to have you with us.')
             this.router.navigateByUrl('/auth/login');
           }
         }
