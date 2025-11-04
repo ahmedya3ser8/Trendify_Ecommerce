@@ -1,1 +1,50 @@
-<p>product-details works!</p>
+<section class="hero py-14 mt-16">
+  <div class="container">
+    <div class="flex gap-10">
+      <div class="col w-[40%]">
+        <swiper-container #swiperProductimgs init="false">
+          @for (item of product().images; track $index) {
+            <swiper-slide>
+              <div class="image w-full h-[400px] bg-white">
+                <img [src]="item" class="w-full h-full" alt="product-image" />
+              </div>
+            </swiper-slide>
+          }
+        </swiper-container>
+      </div>
+      <div class="col w-[60%] flex flex-col gap-4">
+        <h3 class="text-3xl text-secondary font-semibold">{{product().title}}</h3>
+        <div class="font-medium">
+          <span class="text-secondary text-lg">Price : </span>
+          <span class="text-main">{{product().price}} EGP</span>
+        </div>
+        <p class="text-gray-500 text-sm max-w-lg">{{product().description}}</p>
+        <div class="font-medium">
+          <span class="text-secondary text-lg">Category : </span>
+          <span class="text-main">{{product().category.name}}</span>
+        </div>
+        <div class="font-medium">
+          <span class="text-secondary text-lg">Quantity : </span>
+          <span class="text-main">{{product().quantity}}</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          @for (star of [1, 2, 3, 4, 5]; track star) {
+            @if ($index < rateAvg(product().ratingsAverage)) {
+              <i class="fa-solid fa-star text-yellow-600"></i>
+            } @else {
+              <i class="fa-solid fa-star"></i>
+            }
+          }
+          <span class="text-secondary"> {{product().ratingsAverage}} </span>
+          <span class="text-gray-300 text-sm">(500+)</span>
+        </div>
+        <button class="btn w-lg rounded-xl">Add To Cart</button>
+        <div class="flex items-center gap-2.5 text-sm text-gray-500">
+          <i class="fa-solid fa-truck"></i>
+          <span>Estimated Delivery : </span>
+          <span class="text-secondary font-medium">23 Mar 2025 - 25 Mar 2025</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -34,7 +34,7 @@ export class HeaderComponent {
     },
   ]);
   logout(): void {
-    this.cookieService.delete('access_token');
+    this.cookieService.delete('access_token', '/');
     this.router.navigateByUrl('/auth/login');
   }
 }

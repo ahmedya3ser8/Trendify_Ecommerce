@@ -37,7 +37,11 @@ export class LoginComponent {
         next: (res) => {
           if (res.message === 'success') {
             console.log(res);
-            this.cookieService.set('access_token', res.token);
+            this.cookieService.set('access_token', res.token, {
+              path: '/',
+              expires: 7,
+              sameSite: 'Lax'
+            })
             this.toastrService.success('Welcome back! You’ve logged in successfully.')
             this.router.navigateByUrl('/home');
           }

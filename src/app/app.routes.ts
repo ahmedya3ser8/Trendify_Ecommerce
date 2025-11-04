@@ -8,7 +8,7 @@ import { MainLayoutsComponent } from '@core/layouts/main-layouts/main-layouts.co
 export const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'auth/login',
     pathMatch: 'full'
   },
   {

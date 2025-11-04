@@ -14,7 +14,7 @@
 
 @layer components {
   .btn {
-    @apply bg-main text-white h-12 rounded-full cursor-pointer transition duration-300 hover:bg-[#764a21]
+    @apply w-full bg-main text-white h-12 rounded-full cursor-pointer transition duration-300 hover:bg-[#764a21]
   }
 }
 

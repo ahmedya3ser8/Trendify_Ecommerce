@@ -8,6 +8,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   if (cookieService.get('access_token')) {
     return true;
   } else {
-    return router.parseUrl('/auth/login');
+    router.navigateByUrl('/auth/login');
+    return false;
   }
 };

@@ -1,1 +1,58 @@
-<p>products-list works!</p>
+<section class="hero py-14 mt-16">
+  <div class="container">
+    <div class="flex gap-8">
+      <div class="col w-1/6">
+        <h3 class="text-3xl text-secondary font-medium">Filter By</h3>
+        <p-accordion value="0">
+          <p-accordion-panel value="0">
+            <p-accordion-header class="bg-transparent! px-0!"> Category </p-accordion-header>
+            <p-accordion-content>
+              <ul class="flex flex-col gap-2">
+                <li
+                  (click)="selectedCatId('', 'All Products')"
+                  class="text-gray-400 cursor-pointer transition duration-300 hover:text-gray-600"
+                  [class.active]="categoryId() === ''"
+                >
+                  All Products
+                </li>
+                @for (category of categoryList(); track category._id) {
+                  <li
+                    (click)="selectedCatId(category._id, category.name)"
+                    class="text-gray-400 cursor-pointer transition duration-300 hover:text-gray-600"
+                    [class.active]="categoryId() === category._id"
+                  >
+                    {{category.name}}
+                  </li>
+                }
+              </ul>
+            </p-accordion-content>
+          </p-accordion-panel>
+        </p-accordion>
+      </div>
+      <div class="col w-5/6">
+        <h3 class="text-3xl text-secondary font-medium mb-6">
+          {{categoryName()}}
+          <span class="text-main text-sm">({{total()}})</span>
+        </h3>
+        @if (productList().length > 0) {
+          <div class="grid grid-cols-3 gap-6">
+            @for (product of productList(); track product._id) {
+              <app-product-item [product]="product" />
+            }
+          </div>
+          <p-paginator
+            (onPageChange)="onPageChange($event)"
+            [first]="first()"
+            [rows]="rows()"
+            [totalRecords]="total()"
+            [showFirstLastIcon]="false"
+          />
+        } @else {
+          <div class="flex justify-center items-center h-full text-secondary text-xl">
+            No items available in this category yet! 🛒🚫
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

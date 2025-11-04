@@ -1,17 +1,17 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 
-import { appRoutes } from './app.routes';
-import { providePrimeNG } from 'primeng/config';
-import { CookieService } from 'ngx-cookie-service';
-import Aura from '@primeuix/themes/aura';
+import { errorsInterceptor } from '@core/interceptors/errors.interceptor';
 import { headersInterceptor } from '@core/interceptors/headers.interceptor';
 import { loadingInterceptor } from '@core/interceptors/loading.interceptor';
-import { errorsInterceptor } from '@core/interceptors/errors.interceptor';
+import Aura from '@primeuix/themes/aura';
+import { CookieService } from 'ngx-cookie-service';
 import { provideToastr } from 'ngx-toastr';
+import { providePrimeNG } from 'primeng/config';
+import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,6 +29,6 @@ export const appConfig: ApplicationConfig = {
         }
       }
     }),
-    importProvidersFrom(CookieService)
+    CookieService
   ]
 };

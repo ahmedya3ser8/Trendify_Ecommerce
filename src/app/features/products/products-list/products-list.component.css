@@ -1,0 +1,39 @@
+:host ::ng-deep .p-accordioncontent-content {
+  background: transparent !important;
+  padding-inline: .5rem !important;
+}
+
+:host ::ng-deep .p-paginator {
+  flex-wrap: nowrap;
+}
+
+:host ::ng-deep .p-paginator-page.p-paginator-page-selected {
+  color: #99a1af;
+  border: 1px solid #8B5E35;
+  background-color: white;
+}
+
+:host ::ng-deep .p-paginator-page {
+  color: #99a1af;
+  border: 1px solid #99a1af;
+  background-color: white;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+:host ::ng-deep .p-paginator-pages {
+  gap: 8px;
+}
+
+:host ::ng-deep .p-paginator-prev svg,
+:host ::ng-deep .p-paginator-next svg {
+  width: 24px;
+  height: 24px;
+  color: #99a1af;
+}
+
+.active {
+  color: #090F41;
+  font-weight: 500;
+}

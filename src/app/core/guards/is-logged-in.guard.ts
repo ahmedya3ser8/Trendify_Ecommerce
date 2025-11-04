@@ -6,7 +6,8 @@ export const isLoggedInGuard: CanActivateFn = (route, state) => {
   const cookieService = inject(CookieService);
   const router = inject(Router);
   if (cookieService.get('access_token')) {
-    return router.parseUrl('/home');
+    router.navigateByUrl('/home')
+    return false;
   } else {
     return true;
   }

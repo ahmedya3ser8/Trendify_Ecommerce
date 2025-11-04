@@ -37,19 +37,19 @@ export class BestSellingComponent {
     },
   ])
   ngOnInit(): void {
-    this.filterdProductsByCategoryId('6439d58a0049ad0b52b9003f');
+    this.filterdProductsByCategoryId();
   }
   selectedCategroyId(catId: string): void {
     console.log(catId);
     this.categoryId.set(catId);
     if (catId === '') {
-      this.filterdProductsByCategoryId('6439d58a0049ad0b52b9003f');
+      this.filterdProductsByCategoryId();
     } else {
       this.filterdProductsByCategoryId(catId);
     }
   }
-  filterdProductsByCategoryId(catId: string): void {
-    this.productService.getAllProducts(4, catId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+  filterdProductsByCategoryId(catId?: string): void {
+    this.productService.getAllProducts(1, 4, catId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
         console.log(res.data);
         this.productList.set(res.data);
