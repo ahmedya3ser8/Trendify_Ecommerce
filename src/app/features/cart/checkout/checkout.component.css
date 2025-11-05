@@ -1,0 +1,11 @@
+.delivery:has(input:checked) {
+  border-color: #8B5E35;
+}
+
+.delivery:has(input:checked) label {
+  color: #8B5E35;
+}
+
+.floating-label {
+  top: 20%;
+}

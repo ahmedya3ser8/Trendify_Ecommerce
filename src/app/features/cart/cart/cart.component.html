@@ -1,1 +1,47 @@
-<p>cart works!</p>
+<section class="py-14 mt-16">
+  <div class="container">
+    <div class="flex gap-8">
+      <div class="col bg-white flex-1">
+        @for (product of cartDetails().products; track product.product.id) {
+          <app-cart-item [product]="product" (updateUserCart)="updateLoggedUserCart($event)" />
+        }
+      </div>
+      <div class="col bg-white w-md border border-gray-300 rounded-md p-5 flex flex-col gap-4 h-fit">
+        <div class="flex flex-col gap-4 border-b border-gray-300 pb-5">
+          <h3 class="text-secondary text-xl font-semibold">Coupon Code</h3>
+          <div class="flex gap-2">
+            <input type="text" class="flex-1 h-12 p-2 border border-main outline-none rounded-lg" placeholder="Enter Your Code" />
+            <button class="w-20 bg-main text-white rounded-lg cursor-pointer">Apply</button>
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 border-b border-gray-300 pb-5">
+          <h3 class="text-secondary text-xl font-semibold">Order Summary</h3>
+          <ul class="flex flex-col gap-2">
+            <li class="flex justify-between items-center">
+              <span class="text-gray-500">Total</span>
+              <span class="text-main font-medium">{{cartDetails().totalCartPrice}} EGP</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <span class="text-gray-500">Total Shipping Cost</span>
+              <span class="text-main font-medium">{{cartDetails().totalCartPrice * (10 / 100)}} EGP</span>
+            </li>
+          </ul>
+          <p class="text-sm text-gray-500">
+            <i class="fa-solid fa-truck-fast"></i>
+            Delivery between September 1 and September 7
+          </p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div class="flex justify-between items-center">
+            <span class="text-secondary text-lg font-medium">Total</span>
+            <span class="text-main font-semibold">{{cartDetails().totalCartPrice - cartDetails().totalCartPrice * (10 / 100)}} EGP</span>
+          </div>
+          <button routerLink="/cart/checkout" class="btn rounded-lg">
+            Proceed to Checkout
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

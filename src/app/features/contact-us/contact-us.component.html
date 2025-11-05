@@ -57,8 +57,8 @@
       </div>
       <div class="w-full">
         <p-floatlabel variant="on">
-          <p-select inputId="topics" formControlName="topic" [class.border-red-500!]="isFieldInvalid('topic')" [options]="topics" optionLabel="name" optionValue="code" />
-          <label for="topic" [class.text-red-500!]="isFieldInvalid('topic')">Choose a topic</label>
+          <p-select inputId="topics" formControlName="topic" [class.border-red-500!]="isInvalid('topic')" [options]="topics" optionLabel="name" optionValue="code" />
+          <label for="topic" [class.text-red-500!]="isInvalid('topic')">Choose a topic</label>
         </p-floatlabel>
         @if (form.get('topic')?.errors && form.get('topic')?.touched) {
           <p class="text-red-500 text-sm mt-1 lowercase"> topic is required </p>
@@ -66,8 +66,8 @@
       </div>
       <div class="w-full">
         <div class="floating-label-group">
-          <textarea id="message" formControlName="message" class="floating-input h-[110px]! resize-none" [class.border-red-500!]="isFieldInvalid('message')" placeholder=" "></textarea>
-          <label for="message" class="floating-label" [class.text-red-500!]="isFieldInvalid('message')"> Message </label>
+          <textarea id="message" formControlName="message" class="floating-input h-[110px]! resize-none" [class.border-red-500!]="isInvalid('message')" placeholder=" "></textarea>
+          <label for="message" class="floating-label" [class.text-red-500!]="isInvalid('message')"> Message </label>
         </div>
         @if (form.get('message')?.errors && form.get('message')?.touched) {
           <p class="text-red-500 text-sm mt-1 lowercase"> message is required </p>

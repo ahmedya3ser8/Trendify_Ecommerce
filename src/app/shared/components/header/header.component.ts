@@ -1,16 +1,19 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+
 import { CookieService } from 'ngx-cookie-service';
+import { DrawerModule } from 'primeng/drawer';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, DrawerModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
   private readonly router = inject(Router);
   private readonly cookieService = inject(CookieService);
+  visible: boolean = false;
   menuItems = signal([
     {
       text: 'Home',

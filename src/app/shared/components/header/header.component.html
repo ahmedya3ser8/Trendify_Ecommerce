@@ -18,12 +18,10 @@
             <span class="absolute -top-2 -right-1 text-xs bg-main text-white size-5 rounded-full border border-white flex items-center justify-center">2</span>
           </a>
         </li>
-        <li>
-          <a routerLink="/cart" class="text-main relative">
-            <i class="fa-solid fa-cart-shopping text-2xl"></i>
-            <span class="absolute -top-2 -right-1 text-xs bg-main text-white size-5 rounded-full border border-white flex items-center justify-center">2</span>
-          </a>
-        </li>
+        <button (click)="visible = true" class="text-main relative cursor-pointer">
+          <i class="fa-solid fa-cart-shopping text-2xl"></i>
+          <span class="absolute -top-2 -right-1 text-xs bg-main text-white size-5 rounded-full border border-white flex items-center justify-center">2</span>
+        </button>
         <button (click)="logout()">
           <i class="fa-solid fa-right-from-bracket text-2xl text-main cursor-pointer"></i>
         </button>
@@ -31,3 +29,27 @@
     </div>
   </div>
 </header>
+
+<!-- cart preview -->
+<p-drawer [(visible)]="visible" position="right" styleClass="!w-md">
+  <ng-template #header>
+    <div class="flex gap-1">
+      <h3 class="text-xl font-medium text-secondary"> Cart </h3>
+      <span class="text-xs text-main">(2)</span>
+    </div>
+  </ng-template>
+  <div class="body">
+    <!-- <app-cart-item />
+    <app-cart-item /> -->
+  </div>
+  <ng-template #footer>
+    <div class="flex justify-between items-center mb-2.5">
+      <span class="text-secondary text-lg font-medium">Total</span>
+      <span class="text-main font-semibold">1200 EGP</span>
+    </div>
+    <button (click)="visible = false" routerLink="/cart" class="btn rounded-lg">
+      Proceed to Checkout
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </ng-template>
+</p-drawer>

@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { Select } from 'primeng/select';
-import { FloatLabel } from "primeng/floatlabel"
-import { SubscriptionComponent } from "@shared/components/subscription/subscription.component";
 import { BasicInputComponent } from "@shared/components/basic-input/basic-input.component";
+import { SubscriptionComponent } from "@shared/components/subscription/subscription.component";
+import { isFieldInvalid } from '@shared/utils/invalid-field';
+import { FloatLabel } from "primeng/floatlabel";
+import { Select } from 'primeng/select';
 
 interface ITopic {
   name: string;
@@ -51,8 +52,7 @@ export class ContactUsComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
-  isFieldInvalid(field: string): boolean {
-    const control: AbstractControl | null = this.form.get(field);
-    return !!(control?.errors && control?.touched);
+  isInvalid(field: string) {
+    return isFieldInvalid(this.form, field)
   }
 }

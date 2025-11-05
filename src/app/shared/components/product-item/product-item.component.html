@@ -14,7 +14,7 @@
     </div>
     <div class="flex justify-between items-center">
       <span class="text-main"> {{product().price}} EGP </span>
-      <button class="w-8 h-8 bg-main text-white rounded-md">
+      <button (click)="addToCart(product()._id)" class="w-8 h-8 bg-main text-white rounded-md cursor-pointer">
         <i class="fa-solid fa-plus"></i>
       </button>
     </div>

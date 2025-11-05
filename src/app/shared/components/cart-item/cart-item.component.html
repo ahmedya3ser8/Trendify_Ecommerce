@@ -1,0 +1,26 @@
+@if (product()) {
+  <div class="cart_item flex gap-6 border-b border-gray-300 py-4">
+    <div class="image w-32 h-32 bg-gray-50">
+      <img [src]="product().product.imageCover" class="w-full h-full" alt="product" />
+    </div>
+    <div class="flex flex-col items-start gap-4">
+      <div class="content">
+        <h3 class="text-secondary text-lg font-semibold mb-1.5">{{product().product.title}}</h3>
+        <h4 class="text-main font-semibold">{{product().price}} EGP</h4>
+      </div>
+      <div class="quantities flex items-center w-24">
+        <button (click)="updateProductQuantity(product().product.id, product().count + 1)" class="bg-gray-100 size-7 flex items-center justify-center cursor-pointer">
+          <i class="fa-solid fa-plus text-main text-xs"></i>
+        </button>
+        <span class="text-main flex items-center justify-center flex-1"> {{product().count}} </span>
+        <button (click)="updateProductQuantity(product().product.id, product().count - 1)" class="bg-gray-100 size-7 flex items-center justify-center cursor-pointer">
+          <i class="fa-solid fa-minus text-main text-xs"></i>
+        </button>
+      </div>
+      <button (click)="deleteCartItem(product().product.id)" class="text-gray-500 cursor-pointer">
+        <i class="fa-solid fa-trash-can text-xl"></i>
+        Delete Product
+      </button>
+    </div>
+  </div>
+}
