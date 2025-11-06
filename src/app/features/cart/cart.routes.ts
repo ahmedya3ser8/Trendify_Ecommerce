@@ -6,7 +6,7 @@ export const cartRoutes: Routes = [
     loadComponent: () => import('./cart/cart.component').then(c => c.CartComponent)
   },
   {
-    path: 'checkout',
+    path: 'checkout/:id',
     loadComponent: () => import('./checkout/checkout.component').then(c => c.CheckoutComponent)
   },
 ];

@@ -38,13 +38,26 @@
           <span class="text-secondary"> {{product().ratingsAverage}} </span>
           <span class="text-gray-300 text-sm">(500+)</span>
         </div>
-        <button class="btn w-lg rounded-xl">Add To Cart</button>
+        <button (click)="addToCart(product().id)" class="btn w-lg rounded-xl">Add To Cart</button>
         <div class="flex items-center gap-2.5 text-sm text-gray-500">
           <i class="fa-solid fa-truck"></i>
           <span>Estimated Delivery : </span>
           <span class="text-secondary font-medium">23 Mar 2025 - 25 Mar 2025</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-14">
+  <div class="container">
+    <h3 #similarProducts class="text-secondary text-3xl font-semibold mb-6">Similar Products</h3>
+    <div class="grid grid-cols-4 gap-6">
+      @defer (on viewport(similarProducts)) {
+        @for (product of productList(); track product.id) {
+          <app-product-item [product]="product" />
+        }
+      }
     </div>
   </div>
 </section>

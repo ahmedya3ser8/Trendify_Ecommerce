@@ -2,8 +2,20 @@
   <div class="container">
     <div class="flex gap-8">
       <div class="col bg-white flex-1">
-        @for (product of cartDetails().products; track product.product.id) {
-          <app-cart-item [product]="product" (updateUserCart)="updateLoggedUserCart($event)" />
+        @if (cartDetails().data && cartDetails().data.products.length > 0) {
+          @for (product of cartDetails().data.products; track product.product.id) {
+            <app-cart-item [product]="product" />
+          }
+        } @else {
+          <div class="flex flex-col justify-center items-center gap-4 h-full">
+            <div class="image">
+              <img src="/images/empty-cart.svg" class="h-36" alt="empty-cart" />
+            </div>
+            <div class="content flex flex-col gap-4">
+              <h3 class="text-main text-lg font-bold">Your cart is empty</h3>
+              <button routerLink="/products" class="btn rounded-lg">Shopping Now</button>
+            </div>
+          </div>
         }
       </div>
       <div class="col bg-white w-md border border-gray-300 rounded-md p-5 flex flex-col gap-4 h-fit">
@@ -19,11 +31,11 @@
           <ul class="flex flex-col gap-2">
             <li class="flex justify-between items-center">
               <span class="text-gray-500">Total</span>
-              <span class="text-main font-medium">{{cartDetails().totalCartPrice}} EGP</span>
+              <span class="text-main font-medium">{{cartDetails().data.totalCartPrice || 0}} EGP</span>
             </li>
             <li class="flex justify-between items-center">
               <span class="text-gray-500">Total Shipping Cost</span>
-              <span class="text-main font-medium">{{cartDetails().totalCartPrice * (10 / 100)}} EGP</span>
+              <span class="text-main font-medium">{{(cartDetails().data.totalCartPrice * (10 / 100)).toFixed() || 0}} EGP</span>
             </li>
           </ul>
           <p class="text-sm text-gray-500">
@@ -34,9 +46,9 @@
         <div class="flex flex-col gap-4">
           <div class="flex justify-between items-center">
             <span class="text-secondary text-lg font-medium">Total</span>
-            <span class="text-main font-semibold">{{cartDetails().totalCartPrice - cartDetails().totalCartPrice * (10 / 100)}} EGP</span>
+            <span class="text-main font-semibold">{{(cartDetails().data.totalCartPrice + cartDetails().data.totalCartPrice * (10 / 100)) || 0}} EGP</span>
           </div>
-          <button routerLink="/cart/checkout" class="btn rounded-lg">
+          <button [routerLink]="['/cart/checkout', cartDetails().cartId]" class="btn rounded-lg">
             Proceed to Checkout
             <i class="fa-solid fa-arrow-right"></i>
           </button>

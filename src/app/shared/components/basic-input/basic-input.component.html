@@ -8,6 +8,7 @@
     class="floating-input"
     [class.!border-red-500]="control()?.touched && control()?.errors"
     placeholder=" "
+    [readonly]="readonly()"
   />
   <label
     [for]="id()"

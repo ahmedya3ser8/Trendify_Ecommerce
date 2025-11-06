@@ -21,6 +21,7 @@ export class BasicInputComponent implements ControlValueAccessor {
   control: InputSignal<AbstractControl | null> = input<AbstractControl | null>(null);
   errors: InputSignal<{ [key: string]: string }> = input<{ [key: string]: string }>({});
   maskPassword: InputSignal<boolean> = input<boolean>(false);
+  readonly: InputSignal<boolean> = input<boolean>(false);
   value!: string;
   flag: WritableSignal<boolean> = signal<boolean>(false);
   onChange: (value: string) => void = () => {}

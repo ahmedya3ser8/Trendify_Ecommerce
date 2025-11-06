@@ -1,9 +1,9 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 
 import { CartItemComponent } from "@shared/components/cart-item/cart-item.component";
 import { CartService } from '../services/cart.service';
-import { ICart } from '@core/models/icart';
 
 @Component({
   selector: 'app-cart',
@@ -13,20 +13,12 @@ import { ICart } from '@core/models/icart';
 })
 export class CartComponent implements OnInit {
   private readonly cartService = inject(CartService);
-  cartDetails: WritableSignal<ICart> = signal({} as ICart);
+  private readonly destroyRef = inject(DestroyRef);
+  cartDetails = this.cartService.cart;;
   ngOnInit(): void {
     this.getLoggedUserCart();
   }
   getLoggedUserCart(): void {
-    this.cartService.getLoggedUserCart().subscribe({
-      next: (res) => {
-        console.log(res);
-        this.cartDetails.set(res.data);
-      }
-    })
-  }
-  updateLoggedUserCart(e: any): void {
-    console.log('updateLoggedUserCart', e);
-    this.cartDetails.set(e.data);
+    this.cartService.getLoggedUserCart().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 }

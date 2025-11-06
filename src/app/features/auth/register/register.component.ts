@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from "@angular/router";
 
@@ -7,6 +7,7 @@ import { AuthSliderComponent } from "@shared/components/auth-slider/auth-slider.
 import { BasicInputComponent } from "@shared/components/basic-input/basic-input.component";
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly toastrService = inject(ToastrService);
+  private readonly destroyRef = inject(DestroyRef);
   form!: FormGroup;
   ngOnInit(): void {
     this.initForm();
@@ -35,7 +37,7 @@ export class RegisterComponent implements OnInit {
   submitForm(): void {
     if (this.form.valid) {
       console.log(this.form.value);
-      this.authService.register(this.form.value).subscribe({
+      this.authService.register(this.form.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (res) => {
           console.log(res);
           if (res.message === 'success') {

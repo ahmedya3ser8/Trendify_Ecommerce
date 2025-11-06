@@ -72,11 +72,11 @@
           <ul class="flex flex-col gap-2">
             <li class="flex justify-between items-center">
               <span class="text-gray-500">Total</span>
-              <span class="text-main font-medium">15,000 EGP</span>
+              <span class="text-main font-medium">{{cartDetails().data.totalCartPrice}} EGP</span>
             </li>
             <li class="flex justify-between items-center">
               <span class="text-gray-500">Total Shipping Cost</span>
-              <span class="text-main font-medium">1,000 EGP</span>
+              <span class="text-main font-medium">{{(cartDetails().data.totalCartPrice * (10 / 100)).toFixed(2)}} EGP</span>
             </li>
           </ul>
           <p class="text-sm text-gray-500">
@@ -87,7 +87,7 @@
         <div class="flex flex-col gap-4">
           <div class="flex justify-between items-center">
             <span class="text-secondary text-lg font-medium">Total</span>
-            <span class="text-main font-semibold">1200 EGP</span>
+            <span class="text-main font-semibold">{{(cartDetails().data.totalCartPrice + cartDetails().data.totalCartPrice * (10 / 100)).toFixed(2)}} EGP</span>
           </div>
           <button (click)="submitForm()" class="btn rounded-lg">
             Payment

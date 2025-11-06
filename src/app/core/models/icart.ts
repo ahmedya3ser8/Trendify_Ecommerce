@@ -7,10 +7,20 @@ export interface ICart {
   updatedAt: string;
   __v: number;
   totalCartPrice: number;
-  products: {
-    count: number;
-    price: number;
-    product: IProduct;
-    _id: string;
-  }[]
+  products: ICartItem[]
+}
+
+export interface ICartItem {
+  count: number;
+  price: number;
+  product: IProduct;
+  _id: string;
+}
+
+export interface ICartResponse {
+  cartId: string;
+  message: string;
+  status: string;
+  numOfCartItems: number;
+  data: ICart
 }
