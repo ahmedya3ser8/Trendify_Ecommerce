@@ -14,7 +14,7 @@
       <ul class="flex items-center space-x-4">
         <li (click)="menu.toggle($event)" class="flex items-center gap-2 bg-gray-50 text-main p-2 rounded-lg cursor-pointer">
           <i class="fa-regular fa-user"></i>
-          <h4 class="font-medium"> {{userName()}} </h4>
+          <h4 class="font-medium"> {{userInfo().name}} </h4>
           <i class="fa-solid fa-chevron-down"></i>
           <p-menu #menu [popup]="true" [model]="items" appendTo="body"></p-menu>
         </li>

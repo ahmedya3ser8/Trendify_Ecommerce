@@ -1,0 +1,19 @@
+<section class="mt-16 py-14">
+  <div class="container">
+    <div class="flex gap-10">
+      <div class="col w-[200px] rounded-lg">
+        <ul class="bg-white flex flex-col gap-4 mb-4">
+          <li>
+            <a routerLink="/account/profile" routerLinkActive="bg-[#fdfbf3] text-main font-medium !border-main" class="block h-12 p-4 border-s-2 border-transparent transition duration-300 cursor-pointer">Profile</a>
+          </li>
+          <li>
+            <a routerLink="/account/orders" routerLinkActive="bg-[#fdfbf3] text-main font-medium !border-main" class="block h-12 p-4 border-s-2 border-transparent transition duration-300 cursor-pointer">My Orders</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col flex-1 bg-white p-4 rounded-lg">
+        <router-outlet />
+      </div>
+    </div>
+  </div>
+</section>

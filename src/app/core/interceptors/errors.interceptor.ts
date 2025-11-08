@@ -8,7 +8,7 @@ export const errorsInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
       console.log('interceptor', err);
-      return throwError(() => toastrService.error(err.error.message));
+      return throwError(() => toastrService.error(err.error.message || err.error.errors.msg));
     })
   );
 };
