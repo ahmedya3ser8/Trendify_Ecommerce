@@ -1,4 +1,5 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { AccordionModule } from 'primeng/accordion';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
@@ -7,16 +8,18 @@ import { IProduct } from '@core/models/iproduct';
 import { ProductItemComponent } from "@shared/components/product-item/product-item.component";
 import { CategoryService } from '@features/home/components/categories/services/category.service';
 import { ICategory } from '@core/models/icategory';
+import { EmptyStateComponent } from "@shared/components/empty-state/empty-state.component";
 
 @Component({
   selector: 'app-products-list',
-  imports: [AccordionModule, ProductItemComponent, PaginatorModule],
+  imports: [AccordionModule, ProductItemComponent, PaginatorModule, EmptyStateComponent],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.css'
 })
 export class ProductsListComponent implements OnInit {
   private readonly productService = inject(ProductService);
   private readonly categoryService = inject(CategoryService);
+  private readonly destroyRef = inject(DestroyRef);
   productList: WritableSignal<IProduct[]> = signal([]);
   categoryList: WritableSignal<ICategory[]> = signal([]);
   first: WritableSignal<number> = signal(1);
@@ -29,7 +32,7 @@ export class ProductsListComponent implements OnInit {
     this.getAllCategories();
   }
   filterdProductsByCategoryId(catId?: string): void {
-    this.productService.getAllProducts(this.first(), this.rows(), catId).subscribe({
+    this.productService.getAllProducts(this.first(), this.rows(), catId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
         console.log(res);
         this.total.set(res.results);
@@ -38,7 +41,7 @@ export class ProductsListComponent implements OnInit {
     })
   }
   getAllCategories(): void {
-    this.categoryService.getAllCategories().subscribe({
+    this.categoryService.getAllCategories().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
         console.log(res);
         this.categoryList.set(res.data);

@@ -7,15 +7,12 @@
             <app-cart-item [product]="product" />
           }
         } @else {
-          <div class="flex flex-col justify-center items-center gap-4 h-full">
-            <div class="image">
-              <img src="/images/empty-cart.svg" class="h-36" alt="empty-cart" />
-            </div>
-            <div class="content flex flex-col gap-4">
-              <h3 class="text-main text-lg font-bold">Your cart is empty</h3>
-              <button routerLink="/products" class="btn rounded-lg">Shopping Now</button>
-            </div>
-          </div>
+          <app-empty-state
+            [image]="'/images/empty-cart.svg'"
+            [title]="'Your cart is empty'"
+          >
+            <button routerLink="/products" class="btn rounded-lg">Shopping Now</button>
+          </app-empty-state>
         }
       </div>
       <div class="col bg-white w-md border border-gray-300 rounded-md p-5 flex flex-col gap-4 h-fit">

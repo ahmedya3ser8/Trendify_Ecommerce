@@ -2,7 +2,7 @@
   <div class="container">
     <div class="flex justify-between items-center">
       <div class="logo">
-        <a routerLink="/home" class="text-3xl text-main font-medium cursor-pointer"> Trendify </a>
+        <a routerLink="/home" class="text-3xl text-main font-semibold  cursor-pointer"> Trendify </a>
       </div>
       <ul class="flex items-center space-x-4">
         @for (item of menuItems(); track $index) {
@@ -45,12 +45,10 @@
         <app-cart-item [product]="product" />
       }
     } @else {
-      <div class="flex flex-col justify-center items-center gap-4 h-full">
-        <div class="image">
-          <img src="/images/empty-cart.svg" class="h-36" alt="empty-cart" />
-        </div>
-        <h3 class="text-main text-lg font-bold">Your cart is empty</h3>
-      </div>
+      <app-empty-state
+        [image]="'/images/empty-cart.svg'"
+        [title]="'Your cart is empty'"
+      />
     }
   </div>
   <ng-template #footer>

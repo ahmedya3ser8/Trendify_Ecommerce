@@ -4,10 +4,11 @@ import { RouterLink } from '@angular/router';
 
 import { CartItemComponent } from "@shared/components/cart-item/cart-item.component";
 import { CartService } from '../services/cart.service';
+import { EmptyStateComponent } from "@shared/components/empty-state/empty-state.component";
 
 @Component({
   selector: 'app-cart',
-  imports: [CartItemComponent, RouterLink],
+  imports: [CartItemComponent, RouterLink, EmptyStateComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })

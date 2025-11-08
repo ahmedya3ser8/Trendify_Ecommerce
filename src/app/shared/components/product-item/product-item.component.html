@@ -1,9 +1,14 @@
 <div class="product bg-white p-2">
-  <div [routerLink]="['/products', product()._id]"class="product_image cursor-pointer bg-[#F1F1F1] rounded-md w-full mb-2 relative">
-    <img [src]="product().imageCover" class="w-full h-[300px] object-contain" alt="product-image" />
-    <span class="size-10 rounded-full bg-white absolute top-4 right-4 flex justify-center items-center z-10 cursor-pointer">
-      <i class="fa-solid fa-heart text-xl"></i>
-    </span>
+  <div class="product_image cursor-pointer bg-[#F1F1F1] rounded-md w-full mb-2 relative">
+    <div [routerLink]="['/products', product().id]" class="image h-[300px]">
+      <img [src]="product().imageCover" class="w-full h-full object-contain" alt="product-image" />
+    </div>
+    <button (click)="toggleWishlist(product().id)" class="size-10 rounded-full bg-white absolute top-4 right-4 flex justify-center items-center z-10 cursor-pointer">
+      <i class="fa-solid fa-heart text-xl" [class]="{
+        'text-main': isInWishlist(product().id),
+        'text-black': !isInWishlist(product().id)
+      }"></i>
+    </button>
   </div>
   <div class="product_content p-2 flex flex-col gap-2">
     <h3 class="text-2xl text-secondary line-clamp-1"> {{product().title}} </h3>

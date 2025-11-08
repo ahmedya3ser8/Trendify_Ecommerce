@@ -8,10 +8,11 @@ import { MenuItem } from 'primeng/api';
 import { DrawerModule } from 'primeng/drawer';
 import { MenuModule } from 'primeng/menu';
 import { CartItemComponent } from "../cart-item/cart-item.component";
+import { EmptyStateComponent } from "../empty-state/empty-state.component";
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, DrawerModule, MenuModule, CartItemComponent],
+  imports: [RouterLink, RouterLinkActive, DrawerModule, MenuModule, CartItemComponent, EmptyStateComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

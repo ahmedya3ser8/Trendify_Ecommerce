@@ -1,1 +1,18 @@
-<p>fav-product works!</p>
+<section class="hero py-10 mt-16">
+  <div class="container">
+    @if (wishlistList().length > 0) {
+      <div class="grid grid-cols-4 gap-6">
+        @for (product of wishlistList(); track product.id) {
+          <app-product-item [product]="product" />
+        }
+      </div>
+    } @else {
+      <app-empty-state
+        [image]="'/images/empty-fav.svg'"
+        [title]="'You have no favorite products'"
+      >
+        <button routerLink="/products" class="btn rounded-lg">Shopping Now</button>
+      </app-empty-state>
+    }
+  </div>
+</section>
