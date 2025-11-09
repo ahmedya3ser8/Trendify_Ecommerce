@@ -1,5 +1,5 @@
-:host ::ng-deep .p-menu {
-  min-width: 8rem !important;
+::ng-deep .p-menu {
+  min-width: 10rem !important;
   width: auto !important;
-  margin-top: 10px !important;
+  margin-top: .5rem !important;
 }

@@ -1,0 +1,34 @@
+<section class="mt-16 py-14">
+  <div class="container">
+    <h2 class="text-2xl text-secondary font-medium mb-6">
+      My Orders
+      <span class="text-sm text-main">({{ordersList().length}})</span>
+    </h2>
+    <div class="grid grid-cols-3 gap-6">
+      @for (order of ordersList(); track $index) {
+        <div class="order bg-white p-4 rounded-lg flex flex-col gap-3">
+          <div class="flex justify-between items-center border-b border-gray-300 pb-2">
+            <span class="text-secondary text-lg font-medium">#{{order.id}}</span>
+            <span class="text-gray-400 text-sm">{{order.createdAt | date}}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-secondary font-medium">Order Status</span>
+            <span class="text-gray-400 text-sm">{{order.isDelivered ? 'Delivered' : 'Pending'}}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-secondary font-medium">Payment Method</span>
+            <span class="text-gray-400 text-sm">{{order.paymentMethodType}}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-secondary font-medium">Total</span>
+            <span class="text-gray-400 text-sm">{{order.totalOrderPrice}} EGP</span>
+          </div>
+          <button [routerLink]="['/orders', order._id]" [state]="{order: order}" class="text-main font-medium cursor-pointer">
+            View Details
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

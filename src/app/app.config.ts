@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { provideToastr } from 'ngx-toastr';
 import { providePrimeNG } from 'primeng/config';
 import { appRoutes } from './app.routes';
+import { BASE_URL, CHECKOUT_URL } from '@core/tokens/api-url.token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,6 +30,14 @@ export const appConfig: ApplicationConfig = {
         }
       }
     }),
-    CookieService
+    CookieService,
+    {
+      provide: BASE_URL,
+      useValue: 'https://ecommerce.routemisr.com'
+    },
+    {
+      provide: CHECKOUT_URL,
+      useValue: 'https://trendify-eco.vercel.app'
+    }
   ]
 };

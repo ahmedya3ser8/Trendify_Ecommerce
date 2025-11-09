@@ -1,0 +1,101 @@
+<section class="mt-16 py-14">
+  <div class="container">
+    <div class="bg-white p-4 rounded-lg flex flex-col gap-6">
+      <div class="flex gap-2 border-b border-gray-200 pb-4">
+        <button routerLink="/allorders" class="cursor-pointer"> <i class="fa-solid fa-arrow-left"></i> </button>
+        <h3 class="text-secondary text-lg font-medium">Order Details</h3>
+      </div>
+      <div class="flex flex-col gap-4 border-b border-gray-200 pb-4">
+        <h3 class="text-secondary text-lg font-medium">Order Summary</h3>
+        <ul class="flex items-center gap-8">
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">Order Number</span>
+            <span class="text-secondary text-sm">#{{order().id}}</span>
+          </li>
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">Order Date</span>
+            <span class="text-secondary text-sm">{{order().createdAt | date}}</span>
+          </li>
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">Order Status</span>
+            <span class="text-secondary text-sm">{{order().isDelivered ? 'Delivered' : 'Pending'}}</span>
+          </li>
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">Payment Method</span>
+            <span class="text-secondary text-sm">{{order().paymentMethodType}}</span>
+          </li>
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">Total Price</span>
+            <span class="text-secondary text-sm">{{order().totalOrderPrice}} EGP</span>
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-4 border-b border-gray-200 pb-4">
+        <h3 class="text-secondary text-lg font-medium">Shipping Address</h3>
+        <ul class="flex items-center gap-8">
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">Shipping Method</span>
+            <span class="text-secondary text-sm">Standard Shipping</span>
+          </li>
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">Address</span>
+            <span class="text-secondary text-sm">{{order().shippingAddress?.city || 'Mansoura'}}</span>
+          </li>
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">Name</span>
+            <span class="text-secondary text-sm">{{order().user.name}}</span>
+          </li>
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">email</span>
+            <span class="text-secondary text-sm">{{order().user.email}}</span>
+          </li>
+          <li class="flex flex-col items-center gap-2">
+            <span class="text-gray-400 capitalize font-medium">Phone</span>
+            <span class="text-secondary text-sm">{{order().user.phone}}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-4 border-b border-gray-200 pb-4">
+        <h3 class="text-secondary text-lg font-medium">Order Contents</h3>
+        @for (item of order().cartItems; track $index) {
+          <div class="flex items-center gap-4 border-b border-gray-200 last:border-0 pb-3">
+            <div class="image w-16 bg-gray-50">
+              <img [src]="item.product.imageCover" class="w-full h-full" alt="product-image" />
+            </div>
+            <div class="content">
+              <h3 class="text-secondary text-lg font-medium">{{item.product.title}}</h3>
+              <span class="text-gray-400">{{item.price}} EGP</span>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="flex flex-col gap-4 w-2xl pb-4">
+        <h3 class="text-secondary text-lg font-medium">Order Summary</h3>
+        <ul class="flex flex-col gap-4">
+          <li class="flex justify-between items-center">
+            <span class="text-gray-400">Total</span>
+            <span class="text-secondary font-medium">{{order().totalOrderPrice}} EGP</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="text-gray-400">Total Shipping Fees</span>
+            <span class="text-secondary font-medium">{{order().shippingPrice}} EGP</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="text-gray-400">Tax Price</span>
+            <span class="text-secondary font-medium">{{order().taxPrice}} EGP</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="text-gray-400">Payment Method</span>
+            <span class="text-secondary font-medium">{{order().paymentMethodType}}</span>
+          </li>
+          <li class="flex justify-between items-center">
+            <span class="text-gray-400">Order Status</span>
+            <span class="text-secondary font-medium">
+              {{order().isPaid ? 'Paid' : 'Not Paid'}} / {{order().isDelivered ? 'Delivered' : 'Not Delivered'}}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

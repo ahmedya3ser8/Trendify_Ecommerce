@@ -1,11 +1,11 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { IUserInfo } from '@core/models/iuser';
+import { BasicInputComponent } from '@shared/components/basic-input/basic-input.component';
 import { ValidationService } from '@core/services/validation.service';
+import { IUserInfo } from '@core/models/iuser';
 import { AuthService } from '@features/auth/services/auth.service';
-import { BasicInputComponent } from "@shared/components/basic-input/basic-input.component";
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,8 +15,8 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnInit {
-  private readonly fb = inject(FormBuilder);
+export class ProfileComponent {
+    private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly cookieService = inject(CookieService);
   private readonly destroyRef = inject(DestroyRef);

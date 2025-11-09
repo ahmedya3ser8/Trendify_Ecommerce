@@ -39,16 +39,24 @@ export const appRoutes: Routes = [
         loadComponent: () => import('./features/blog/blog.component').then(c => c.BlogComponent)
       },
       {
+        path: 'allorders',
+        loadComponent: () => import('./features/all-orders/all-orders.component').then(c => c.AllOrdersComponent)
+      },
+      {
+        path: 'orders/:id',
+        loadComponent: () => import('./features/order-details/order-details.component').then(c => c.OrderDetailsComponent)
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./features/profile/profile.component').then(c => c.ProfileComponent)
+      },
+      {
         path: 'cart',
         loadChildren: () => import('./features/cart/cart.routes').then(r => r.cartRoutes)
       },
       {
         path: 'products',
         loadChildren: () => import('./features/products/products.routes').then(r => r.productsRoutes)
-      },
-      {
-        path: 'account',
-        loadChildren: () => import('./features/account/account.routes').then(r => r.accountRoutes)
       }
     ]
   },

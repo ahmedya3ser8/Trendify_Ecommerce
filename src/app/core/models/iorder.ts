@@ -1,4 +1,5 @@
 import { ICartItem } from "./icart";
+import { IUserInfo } from "./iuser";
 
 export interface IOrder {
   taxPrice: number;
@@ -8,10 +9,15 @@ export interface IOrder {
   isPaid: boolean;
   isDelivered: boolean;
   _id: string;
-  user: string;
+  user: IUserInfo;
   cartItems: ICartItem[];
   createdAt: string;
   updatedAt: string;
   id: number;
   __v: number;
+  shippingAddress?: {
+    city: string;
+    details: string;
+    phone: string;
+  }
 }

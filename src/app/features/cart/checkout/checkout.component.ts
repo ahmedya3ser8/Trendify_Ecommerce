@@ -64,7 +64,7 @@ export class CheckoutComponent implements OnInit {
         console.log(res);
         if (res.status === 'success') {
           this.toastrService.success('order completed successfully');
-          timer(1500).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.router.navigateByUrl('/account/allorders'));
+          timer(1500).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.router.navigateByUrl('/allorders'));
         }
       }
     })
