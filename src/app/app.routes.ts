@@ -14,8 +14,8 @@ export const appRoutes: Routes = [
   {
     path: 'auth',
     component: AuthLayoutsComponent,
-    canActivate: [isLoggedInGuard],
-    loadChildren: () => import('./features/auth/auth.routes').then(r => r.authRoutes)
+    loadChildren: () => import('./features/auth/auth.routes').then(r => r.authRoutes),
+    canActivate: [isLoggedInGuard]
   },
   {
     path: '',
@@ -57,7 +57,7 @@ export const appRoutes: Routes = [
       {
         path: 'products',
         loadChildren: () => import('./features/products/products.routes').then(r => r.productsRoutes)
-      }
+      },
     ]
   },
   {

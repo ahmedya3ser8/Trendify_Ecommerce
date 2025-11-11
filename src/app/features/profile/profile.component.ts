@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-    private readonly fb = inject(FormBuilder);
+  private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly cookieService = inject(CookieService);
   private readonly destroyRef = inject(DestroyRef);
@@ -56,10 +56,8 @@ export class ProfileComponent {
   }
   submitChangePasswordForm(): void {
     if (this.changePasswordForm.valid) {
-      console.log(this.changePasswordForm.value);
       this.authService.updateLoggedUserPassword(this.changePasswordForm.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (res) => {
-          console.log(res);
           if (res.message === 'success') {
             this.closeModal();
           }

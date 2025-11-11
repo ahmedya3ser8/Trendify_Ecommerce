@@ -23,7 +23,6 @@ export class TopProductsComponent {
   getAllProducts(): void {
     this.productService.getAllProducts(1, 8).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res.data);
         this.productList.set(res.data);
       }
     })

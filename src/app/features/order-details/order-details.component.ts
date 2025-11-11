@@ -14,7 +14,6 @@ export class OrderDetailsComponent {
   private readonly router = inject(Router);
   order: WritableSignal<IOrder> = signal({} as IOrder);
   constructor() {
-    console.log(this.router.getCurrentNavigation()?.extras.state?.['order']);
     this.order.set(this.router.getCurrentNavigation()?.extras.state?.['order'] || null);
   }
 }

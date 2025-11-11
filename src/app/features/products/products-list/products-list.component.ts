@@ -6,7 +6,7 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { ProductService } from '@core/services/product.service';
 import { IProduct } from '@core/models/iproduct';
 import { ProductItemComponent } from "@shared/components/product-item/product-item.component";
-import { CategoryService } from '@features/home/components/categories/services/category.service';
+import { CategoryService } from '@core/services/category.service';
 import { ICategory } from '@core/models/icategory';
 import { EmptyStateComponent } from "@shared/components/empty-state/empty-state.component";
 
@@ -34,7 +34,6 @@ export class ProductsListComponent implements OnInit {
   filterdProductsByCategoryId(catId?: string): void {
     this.productService.getAllProducts(this.first(), this.rows(), catId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res);
         this.total.set(res.results);
         this.productList.set(res.data);
       }
@@ -43,19 +42,16 @@ export class ProductsListComponent implements OnInit {
   getAllCategories(): void {
     this.categoryService.getAllCategories().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res);
         this.categoryList.set(res.data);
       }
     })
   }
   onPageChange(event: PaginatorState) {
-    console.log(event);
     this.first.set(event.page ?? 0);
     this.rows.set(event.rows ?? 12);
     this.filterdProductsByCategoryId();
   }
   selectedCatId(catId: string, catName: string): void {
-    console.log(catId);
     this.categoryId.set(catId);
     this.categoryName.set(catName)
     if (catId === '') {

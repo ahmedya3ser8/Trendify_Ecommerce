@@ -19,10 +19,8 @@ export class AllOrdersComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   ordersList: WritableSignal<IOrder[]> = signal([]);
   ngOnInit(): void {
-    console.log(this.authService.userId());
     this.orderService.getUserOrders(this.authService.userId()).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res);
         this.ordersList.set(res)
       }
     })

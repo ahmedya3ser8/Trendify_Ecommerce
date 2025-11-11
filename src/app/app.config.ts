@@ -1,5 +1,5 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
@@ -13,6 +13,7 @@ import { provideToastr } from 'ngx-toastr';
 import { providePrimeNG } from 'primeng/config';
 import { appRoutes } from './app.routes';
 import { BASE_URL, CHECKOUT_URL } from '@core/tokens/api-url.token';
+import { NgxSpinnerService } from "ngx-spinner";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -30,7 +31,7 @@ export const appConfig: ApplicationConfig = {
         }
       }
     }),
-    CookieService,
+    importProvidersFrom([CookieService, NgxSpinnerService]),
     {
       provide: BASE_URL,
       useValue: 'https://ecommerce.routemisr.com'

@@ -49,12 +49,9 @@ export class ProductDetailsComponent implements OnInit {
   getSpecificProduct(): void {
     this.activatedRoute.data.subscribe({
       next: ({product}) => {
-        console.log(product.data);
         this.product.set(product.data);
-        console.log(product.data.category._id);
         this.productService.getAllProducts(1, 4, product.data.category._id).subscribe({
           next: (res) => {
-            console.log(res.data);
             this.productList.set(res.data);
           }
         })
@@ -67,7 +64,6 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(productId: string): void {
     this.cartService.addProductToCart(productId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res);
         if (res.status === 'success') {
           this.toastrService.success(res.message);
           this.cartService.getLoggedUserCart().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();

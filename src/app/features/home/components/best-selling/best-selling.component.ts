@@ -40,7 +40,6 @@ export class BestSellingComponent {
     this.filterdProductsByCategoryId();
   }
   selectedCategroyId(catId: string): void {
-    console.log(catId);
     this.categoryId.set(catId);
     if (catId === '') {
       this.filterdProductsByCategoryId();
@@ -51,7 +50,6 @@ export class BestSellingComponent {
   filterdProductsByCategoryId(catId?: string): void {
     this.productService.getAllProducts(1, 4, catId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res.data);
         this.productList.set(res.data);
       }
     })

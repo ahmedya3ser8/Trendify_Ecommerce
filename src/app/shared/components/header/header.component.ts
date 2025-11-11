@@ -10,6 +10,7 @@ import { DrawerModule } from 'primeng/drawer';
 import { MenuModule } from 'primeng/menu';
 import { CartItemComponent } from "../cart-item/cart-item.component";
 import { EmptyStateComponent } from "../empty-state/empty-state.component";
+import { WishlistService } from '@features/products/fav-product/services/wishlist.service';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly cookieService = inject(CookieService);
+  private readonly wishlistService = inject(WishlistService);
   visible: boolean = false;
   items: MenuItem[] | undefined;
   cartDetails = this.cartService.cart;
@@ -53,6 +55,7 @@ export class HeaderComponent implements OnInit {
     this.initItems();
     this.getLoggedUserCart();
     this.userInfo.set(JSON.parse(this.cookieService.get('userInfo')));
+    this.wishlistService.getLoggedUserWishlist().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
   initItems(): void {
     this.items = [

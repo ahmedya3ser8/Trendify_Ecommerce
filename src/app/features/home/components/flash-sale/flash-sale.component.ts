@@ -23,7 +23,6 @@ export class FlashSaleComponent implements OnInit {
   getAllProducts(): void {
     this.productService.getAllProducts().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res.data);
         this.productList.set(res.data);
       }
     })

@@ -41,10 +41,8 @@ export class ForgetPasswordComponent implements OnInit {
   }
   submitForgetForm(): void {
     if (this.forgetForm.valid) {
-      console.log(this.forgetForm.value);
       this.authService.forgetPassword(this.forgetForm.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (res) => {
-          console.log(res);
           if (res.statusMsg === 'success') {
             this.toastrService.success(res.message);
             this.resetForm.get('email')?.setValue(this.forgetForm.value.email);
@@ -56,11 +54,9 @@ export class ForgetPasswordComponent implements OnInit {
   }
   submitOtpForm(): void {
     if (this.otpForm.valid) {
-      console.log(this.otpForm.value);
       this.authService.verifyCode(this.otpForm.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (res) => {
           if (res.status === 'Success') {
-            console.log(res);
             this.steps.set('reset');
           }
         }
@@ -69,10 +65,8 @@ export class ForgetPasswordComponent implements OnInit {
   }
   submitResetForm(): void {
     if (this.resetForm.valid) {
-      console.log(this.resetForm.value);
       this.authService.resetPassword(this.resetForm.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (res) => {
-          console.log(res);
           this.router.navigateByUrl('/auth/login');
         }
       })

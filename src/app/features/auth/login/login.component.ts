@@ -1,13 +1,12 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-
-import { CookieService } from 'ngx-cookie-service';
-import { BasicInputComponent } from "@shared/components/basic-input/basic-input.component";
-import { AuthService } from '../services/auth.service';
-import { AuthSliderComponent } from "@shared/components/auth-slider/auth-slider.component";
-import { ToastrService } from 'ngx-toastr';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+import { AuthSliderComponent } from "@shared/components/auth-slider/auth-slider.component";
+import { BasicInputComponent } from "@shared/components/basic-input/basic-input.component";
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,6 @@ export class LoginComponent {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
-  private readonly cookieService = inject(CookieService);
   private readonly toastrService = inject(ToastrService);
   private readonly destroyRef = inject(DestroyRef);
   form!: FormGroup;
@@ -34,11 +32,9 @@ export class LoginComponent {
   }
   submitForm(): void {
     if (this.form.valid) {
-      console.log(this.form.value);
       this.authService.login(this.form.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (res) => {
           if (res.message === 'success') {
-            console.log(res);
             this.toastrService.success('Welcome back! You’ve logged in successfully.')
             this.router.navigateByUrl('/home');
           }

@@ -36,10 +36,8 @@ export class RegisterComponent implements OnInit {
   }
   submitForm(): void {
     if (this.form.valid) {
-      console.log(this.form.value);
       this.authService.register(this.form.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (res) => {
-          console.log(res);
           if (res.message === 'success') {
             this.toastrService.success('Account created successfully! Glad to have you with us.')
             this.router.navigateByUrl('/auth/login');

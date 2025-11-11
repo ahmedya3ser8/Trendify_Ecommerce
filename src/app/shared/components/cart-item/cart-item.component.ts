@@ -13,7 +13,6 @@ export class CartItemComponent {
   private readonly cartService = inject(CartService);
   product: InputSignal<ICartItem> = input({} as ICartItem);
   deleteCartItem(productId: string): void {
-    console.log(productId);
     this.cartService.removeSpecificCartItem(productId).subscribe();
   }
   updateProductQuantity(productId: string, count: number): void {

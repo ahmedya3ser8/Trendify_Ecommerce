@@ -1,8 +1,8 @@
 import { afterNextRender, Component, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, ElementRef, inject, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
-
-import { CategoryService } from './services/category.service';
-import { ICategory } from '@core/models/icategory';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+import { ICategory } from '@core/models/icategory';
+import { CategoryService } from '@core/services/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -42,7 +42,6 @@ export class CategoriesComponent implements OnInit {
   getAllCategories(): void {
     this.categoryService.getAllCategories().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res.data);
         this.categoryList.set(res.data);
       }
     })

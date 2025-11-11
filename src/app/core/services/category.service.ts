@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ICategory } from '@core/models/icategory';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 
 interface IResponse {
   data: ICategory[],
@@ -18,7 +18,13 @@ interface IResponse {
 })
 export class CategoryService {
   private readonly http = inject(HttpClient);
+  private categories$: Observable<IResponse> | null = null;
   getAllCategories(): Observable<IResponse> {
-    return this.http.get<IResponse>(`https://ecommerce.routemisr.com/api/v1/categories`);
+    if (!this.categories$) {
+      this.categories$ = this.http.get<IResponse>(`https://ecommerce.routemisr.com/api/v1/categories`).pipe(
+        shareReplay(1)
+      )
+    }
+    return this.categories$;
   }
 }

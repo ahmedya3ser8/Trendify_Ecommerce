@@ -35,7 +35,6 @@ export class CheckoutComponent implements OnInit {
   getCartId(): void {
     this.activatedRoute.paramMap.subscribe({
       next: (url) => {
-        console.log(url.get('id'));
         this.cartId.set(url.get('id') as string);
       }
     })
@@ -61,7 +60,6 @@ export class CheckoutComponent implements OnInit {
   cashOrder(): void {
     this.orderService.cashOrder(this.cartId(), this.form.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res);
         if (res.status === 'success') {
           this.toastrService.success('order completed successfully');
           timer(1500).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.router.navigateByUrl('/allorders'));
@@ -72,7 +70,6 @@ export class CheckoutComponent implements OnInit {
   onlineOrder(): void {
     this.orderService.onlineOrder(this.cartId(), this.form.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-        console.log(res);
         if (res.status === 'success') {
           open(res.session.url, '_self');
         }

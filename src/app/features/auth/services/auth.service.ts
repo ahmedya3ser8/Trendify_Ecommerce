@@ -91,7 +91,6 @@ export class AuthService {
     try {
       const token = this.cookieService.get('access_token');
       if (!token) return null;
-      console.log(jwtDecode(token));
       this.userId.set(jwtDecode<IDecodedToken>(token).id)
       return jwtDecode(token);
     } catch (error) {
@@ -102,6 +101,6 @@ export class AuthService {
   logout(): void {
     this.cookieService.delete('access_token', '/');
     this.cookieService.delete('userInfo', '/');
-    this.router.navigateByUrl('/auth/login');
+    this.router.navigate(['/auth/login']);
   }
 }
