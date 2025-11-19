@@ -1,6 +1,6 @@
 <section>
   <div class="flex h-screen">
-    <div class="col w-1/2 flex flex-col justify-center px-20">
+    <div class="col w-full md:w-1/2 flex flex-col justify-center px-8 sm:px-10 lg:px-14 xl:px-16 2xl:px-20">
       <div class="main_title flex flex-col gap-2 mb-4">
         <h2 class="text-secondary text-3xl font-bold">Create a Account</h2>
         <p class="text-gray-400 text-sm">Create a new account</p>
@@ -67,6 +67,6 @@
         <a routerLink="/auth/login" class="text-main underline cursor-pointer">Login</a>
       </p>
     </div>
-    <app-auth-slider class="w-1/2" />
+    <app-auth-slider class="hidden w-1/2 md:block" />
   </div>
 </section>

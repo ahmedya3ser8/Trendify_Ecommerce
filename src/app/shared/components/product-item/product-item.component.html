@@ -1,7 +1,7 @@
 <div class="product bg-white p-2">
   <div class="product_image cursor-pointer bg-[#F1F1F1] rounded-md w-full mb-2 relative">
     <div [routerLink]="['/products', product().id]" class="image h-[300px]">
-      <img [src]="product().imageCover" class="w-full h-full object-contain" alt="product-image" />
+      <img [src]="product().imageCover" loading="lazy" class="w-full h-full object-contain" alt="product-image" />
     </div>
     <button (click)="toggleWishlist(product().id)" class="size-10 rounded-full bg-white absolute top-4 right-4 flex justify-center items-center z-10 cursor-pointer">
       <i class="fa-solid fa-heart text-xl" [class]="{

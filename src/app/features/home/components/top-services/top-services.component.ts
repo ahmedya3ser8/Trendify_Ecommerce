@@ -3,12 +3,12 @@ import { Component, signal } from '@angular/core';
 import { MainTitleComponent } from "@shared/components/main-title/main-title.component";
 
 @Component({
-  selector: 'app-services',
+  selector: 'app-top-services',
   imports: [MainTitleComponent],
-  templateUrl: './services.component.html',
-  styleUrl: './services.component.css'
+  templateUrl: './top-services.component.html',
+  styleUrl: './top-services.component.css'
 })
-export class ServicesComponent {
+export class TopServicesComponent {
   servicesItems = signal([
     {
       icon: 'fa-regular fa-lightbulb text-2xl text-main-color',

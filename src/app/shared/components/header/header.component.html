@@ -4,7 +4,7 @@
       <div class="logo">
         <a routerLink="/home" class="text-3xl text-main font-semibold  cursor-pointer"> Trendify </a>
       </div>
-      <ul class="flex items-center space-x-4">
+      <ul class="hidden lg:flex items-center space-x-4">
         @for (item of menuItems(); track $index) {
           <li>
             <a [routerLink]="item.link" routerLinkActive="text-main font-medium" class="text-gray-400 transition duration-300"> {{item.text}} </a>
@@ -12,7 +12,7 @@
         }
       </ul>
       <ul class="flex items-center space-x-4">
-        <li (click)="menu.toggle($event)" class="flex items-center gap-2 bg-gray-50 text-main p-2 rounded-lg cursor-pointer">
+        <li (click)="menu.toggle($event)" class="hidden lg:flex items-center gap-2 bg-gray-50 text-main p-2 rounded-lg cursor-pointer">
           <i class="fa-regular fa-user"></i>
           <h4 class="font-medium"> {{userInfo().name}} </h4>
           <i class="fa-solid fa-chevron-down"></i>
@@ -32,7 +32,7 @@
 </header>
 
 <!-- cart preview -->
-<p-drawer [(visible)]="visible" position="right" styleClass="!w-md">
+<p-drawer [(visible)]="visible" position="right" styleClass="w-[320px]! !w-md">
   <ng-template #header>
     <div class="flex gap-1">
       <h3 class="text-xl font-medium text-secondary"> Cart </h3>

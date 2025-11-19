@@ -17,9 +17,10 @@ export class CategoriesComponent implements OnInit {
   @ViewChild('swiperCategories') swiperCategories!: ElementRef<HTMLElement>;
   categoryList: WritableSignal<ICategory[]> = signal([]);
   breakpoints = {
-    320:  { slidesPerView: 4, spaceBetween: 10 },
-    768:  { slidesPerView: 6, spaceBetween: 15 },
-    1024: { slidesPerView: 8, spaceBetween: 20 }
+    400:  { slidesPerView: 2, spaceBetween: 10 },
+    768:  { slidesPerView: 4, spaceBetween: 15 },
+    1024: { slidesPerView: 6, spaceBetween: 20 },
+    1280: { slidesPerView: 8, spaceBetween: 25 }
   };
   constructor() {
     afterNextRender(() => {
