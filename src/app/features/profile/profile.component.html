@@ -1,4 +1,4 @@
-<section class="mt-16 py-14 max-w-4xl mx-auto">
+<section class="mt-16 py-14 w-full lg:max-w-4xl mx-auto">
   <div class="container bg-white py-10 px-10 rounded-lg">
     <h2 class="text-2xl text-secondary font-medium mb-6">Personal Information</h2>
     <form [formGroup]="profileform" (ngSubmit)="submitProfileForm()" class="flex flex-col gap-6">
@@ -54,7 +54,7 @@
 
 @if (openModal()) {
   <div class="fixed inset-0 bg-black/50 flex justify-center items-center z-9999">
-    <div class="bg-white p-5 w-md flex flex-col gap-6">
+    <div class="bg-white p-5 w-[95%] md:w-md flex flex-col gap-6">
       <button (click)="closeModal()" class="ml-auto">
         <i class="fa-regular fa-circle-xmark text-secondary text-2xl cursor-pointer"></i>
       </button>
