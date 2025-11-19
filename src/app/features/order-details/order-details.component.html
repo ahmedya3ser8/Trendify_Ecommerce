@@ -7,24 +7,24 @@
       </div>
       <div class="flex flex-col gap-4 border-b border-gray-200 pb-4">
         <h3 class="text-secondary text-lg font-medium">Order Summary</h3>
-        <ul class="flex items-center gap-8">
-          <li class="flex flex-col items-center gap-2">
+        <ul class="flex flex-col md:flex-row max-md:items-start md:items-center gap-8">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">Order Number</span>
             <span class="text-secondary text-sm">#{{order().id}}</span>
           </li>
-          <li class="flex flex-col items-center gap-2">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">Order Date</span>
             <span class="text-secondary text-sm">{{order().createdAt | date}}</span>
           </li>
-          <li class="flex flex-col items-center gap-2">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">Order Status</span>
             <span class="text-secondary text-sm">{{order().isDelivered ? 'Delivered' : 'Pending'}}</span>
           </li>
-          <li class="flex flex-col items-center gap-2">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">Payment Method</span>
             <span class="text-secondary text-sm">{{order().paymentMethodType}}</span>
           </li>
-          <li class="flex flex-col items-center gap-2">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">Total Price</span>
             <span class="text-secondary text-sm">{{order().totalOrderPrice}} EGP</span>
           </li>
@@ -32,24 +32,24 @@
       </div>
       <div class="flex flex-col gap-4 border-b border-gray-200 pb-4">
         <h3 class="text-secondary text-lg font-medium">Shipping Address</h3>
-        <ul class="flex items-center gap-8">
-          <li class="flex flex-col items-center gap-2">
+        <ul class="flex flex-col md:flex-row max-md:items-start md:items-center gap-8">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">Shipping Method</span>
             <span class="text-secondary text-sm">Standard Shipping</span>
           </li>
-          <li class="flex flex-col items-center gap-2">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">Address</span>
             <span class="text-secondary text-sm">{{order().shippingAddress?.city || 'Mansoura'}}</span>
           </li>
-          <li class="flex flex-col items-center gap-2">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">Name</span>
             <span class="text-secondary text-sm">{{order().user.name}}</span>
           </li>
-          <li class="flex flex-col items-center gap-2">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">email</span>
             <span class="text-secondary text-sm">{{order().user.email}}</span>
           </li>
-          <li class="flex flex-col items-center gap-2">
+          <li class="max-md:w-full max-md:justify-between flex md:flex-col items-center gap-2">
             <span class="text-gray-400 capitalize font-medium">Phone</span>
             <span class="text-secondary text-sm">{{order().user.phone}}</span>
           </li>
@@ -69,7 +69,7 @@
           </div>
         }
       </div>
-      <div class="flex flex-col gap-4 w-2xl pb-4">
+      <div class="flex flex-col gap-4 w-full lg:w-2xl pb-4">
         <h3 class="text-secondary text-lg font-medium">Order Summary</h3>
         <ul class="flex flex-col gap-4">
           <li class="flex justify-between items-center">

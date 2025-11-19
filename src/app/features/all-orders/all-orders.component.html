@@ -4,7 +4,7 @@
       My Orders
       <span class="text-sm text-main">({{ordersList().length}})</span>
     </h2>
-    <div class="grid grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       @for (order of ordersList(); track $index) {
         <div class="order bg-white p-4 rounded-lg flex flex-col gap-3">
           <div class="flex justify-between items-center border-b border-gray-300 pb-2">
