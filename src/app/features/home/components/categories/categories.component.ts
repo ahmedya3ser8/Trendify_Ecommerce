@@ -17,7 +17,7 @@ export class CategoriesComponent implements OnInit {
   @ViewChild('swiperCategories') swiperCategories!: ElementRef<HTMLElement>;
   categoryList: WritableSignal<ICategory[]> = signal([]);
   breakpoints = {
-    400:  { slidesPerView: 2, spaceBetween: 10 },
+    400:  { slidesPerView: 3, spaceBetween: 10 },
     768:  { slidesPerView: 4, spaceBetween: 15 },
     1024: { slidesPerView: 6, spaceBetween: 20 },
     1280: { slidesPerView: 8, spaceBetween: 25 }
@@ -27,6 +27,7 @@ export class CategoriesComponent implements OnInit {
       const swiperEl = this.swiperCategories.nativeElement as any;
       Object.assign(swiperEl, {
         speed: 700,
+        slidesPerView: 2,
         simulateTouch: true,
         allowTouchMove: true,
         loop: true,
