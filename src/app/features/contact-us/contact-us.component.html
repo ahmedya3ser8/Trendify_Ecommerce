@@ -1,18 +1,18 @@
 <section class="hero py-10 mt-16">
   <div class="container">
     <div class="mian_title flex flex-col gap-4 mb-8">
-      <h2 class="text-secondary text-4xl font-bold">Contact me</h2>
-      <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sequi ad unde.</p>
+      <h2 class="text-secondary text-3xl md:text-4xl font-bold">Contact me</h2>
+      <p class="text-gray-400 text-sm md:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sequi ad unde.</p>
     </div>
-    <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-[70%] flex flex-col gap-6">
-      <div class="flex gap-6">
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-full md:w-[70%] flex flex-col gap-6">
+      <div class="flex flex-col md:flex-row gap-6">
         <app-basic-input
           [id]="'firstName'"
           [type]="'text'"
           [label]="'First Name'"
           [control]="form.get('firstName')"
           formControlName="firstName"
-          class="w-1/2"
+          class="w-full md:w-1/2"
           [errors]="{
             'required': 'firstName is required'
           }"
@@ -23,20 +23,20 @@
           [label]="'Last Name'"
           [control]="form.get('lastName')"
           formControlName="lastName"
-          class="w-1/2"
+          class="w-full md:w-1/2"
           [errors]="{
             'required': 'lastName is required'
           }"
         />
       </div>
-      <div class="flex gap-6">
+      <div class="flex flex-col md:flex-row gap-6">
         <app-basic-input
           [id]="'email'"
           [type]="'email'"
           [label]="'Email'"
           [control]="form.get('email')"
           formControlName="email"
-          class="w-1/2"
+          class="w-full md:w-1/2"
           [errors]="{
             'required': 'email is required',
             'email': 'enter valid email'
@@ -48,7 +48,7 @@
           [label]="'Phone Number'"
           [control]="form.get('phoneNumber')"
           formControlName="phoneNumber"
-          class="w-1/2"
+          class="w-full md:w-1/2"
           [errors]="{
             'required': 'phoneNumber is required',
             'pattern': 'accept only egypt phone'
