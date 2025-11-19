@@ -27,6 +27,7 @@ export class ProductsListComponent implements OnInit {
   total: WritableSignal<number> = signal(0);
   categoryId: WritableSignal<string> = signal('');
   categoryName: WritableSignal<string> = signal('All Products');
+  openModal = signal(false);
   ngOnInit(): void {
     this.filterdProductsByCategoryId();
     this.getAllCategories();
@@ -59,5 +60,11 @@ export class ProductsListComponent implements OnInit {
     } else {
       this.filterdProductsByCategoryId(catId);
     }
+  }
+  toggleModal(): void {
+    this.openModal.update(v => !v);
+  }
+  closeModal(): void {
+    this.openModal.set(false);
   }
 }

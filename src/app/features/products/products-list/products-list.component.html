@@ -1,8 +1,8 @@
 <section class="hero py-14 mt-16">
   <div class="container">
     <div class="flex gap-8">
-      <div class="col w-1/6">
-        <h3 class="text-3xl text-secondary font-medium">Filter By</h3>
+      <div class="col hidden md:block w-1/6">
+        <h3 class="text-xl lg:text-3xl text-secondary font-medium">Filter By</h3>
         <p-accordion value="0">
           <p-accordion-panel value="0">
             <p-accordion-header class="bg-transparent! px-0!"> Category </p-accordion-header>
@@ -29,13 +29,19 @@
           </p-accordion-panel>
         </p-accordion>
       </div>
-      <div class="col w-5/6">
-        <h3 class="text-3xl text-secondary font-medium mb-6">
-          {{categoryName()}}
-          <span class="text-main text-sm">({{total()}})</span>
-        </h3>
+      <div class="col w-full md:w-5/6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl lg:text-3xl text-secondary font-medium">
+            {{categoryName()}}
+            <span class="text-main text-sm">({{total()}})</span>
+          </h3>
+          <button (click)="toggleModal()" class="text-xl text-secondary font-medium cursor-pointer md:hidden">
+            Filter By
+            <i class="fa-solid fa-filter"></i>
+          </button>
+        </div>
         @if (productList().length > 0) {
-          <div class="grid grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @for (product of productList(); track product.id) {
               <app-product-item [product]="product" />
             }
@@ -57,3 +63,44 @@
     </div>
   </div>
 </section>
+
+@if (openModal()) {
+  <div class="fixed inset-0 bg-black/50 flex justify-center items-end z-9999">
+    <div class="bg-white p-5 w-[95%] md:w-md flex flex-col gap-6 rounded-lg">
+
+      <div class="flex justify-between items-center">
+        <h3 class="text-secondary text-xl font-medium text-center">Filter By</h3>
+        <button (click)="closeModal()" class="cursor-pointer">
+          <i class="fa-regular fa-circle-xmark text-secondary text-2xl"></i>
+        </button>
+      </div>
+
+      <p-accordion value="0">
+        <p-accordion-panel value="0">
+          <p-accordion-header class="bg-transparent! px-0!"> Category </p-accordion-header>
+          <p-accordion-content>
+            <ul class="flex flex-wrap gap-6">
+              <li
+                (click)="closeModal(); selectedCatId('', 'All Products')"
+                class="text-gray-400 cursor-pointer transition duration-300 hover:text-gray-600"
+                [class.active]="categoryId() === ''"
+              >
+                All Products
+              </li>
+              @for (category of categoryList(); track category._id) {
+                <li
+                  (click)="closeModal(); selectedCatId(category._id, category.name)"
+                  class="text-sm text-gray-400 cursor-pointer transition duration-300 hover:text-gray-600"
+                  [class.active]="categoryId() === category._id"
+                >
+                  {{category.name}}
+                </li>
+              }
+            </ul>
+          </p-accordion-content>
+        </p-accordion-panel>
+      </p-accordion>
+
+    </div>
+  </div>
+}
