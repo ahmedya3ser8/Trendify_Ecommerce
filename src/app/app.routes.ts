@@ -7,11 +7,6 @@ import { MainLayoutsComponent } from '@core/layouts/main-layouts/main-layouts.co
 
 export const appRoutes: Routes = [
   {
-    path: '',
-    redirectTo: 'auth/login',
-    pathMatch: 'full'
-  },
-  {
     path: 'auth',
     component: AuthLayoutsComponent,
     loadChildren: () => import('./features/auth/auth.routes').then(r => r.authRoutes),
@@ -22,6 +17,11 @@ export const appRoutes: Routes = [
     component: MainLayoutsComponent,
     canActivate: [authGuard],
     children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
       {
         path: 'home',
         loadComponent: () => import('./features/home/home.component').then(c => c.HomeComponent)

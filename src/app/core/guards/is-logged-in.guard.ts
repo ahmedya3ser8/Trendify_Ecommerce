@@ -6,9 +6,8 @@ import { CookieService } from 'ngx-cookie-service';
 export const isLoggedInGuard: CanActivateFn = (route, state) => {
   const cookieService = inject(CookieService);
   const router = inject(Router);
-  if (cookieService.get('access_token')) {
-    router.navigate(['/home'])
-    return false;
+  if (cookieService.check('access_token')) {
+    return router.createUrlTree(['/home']);
   }
   return true;
 };
