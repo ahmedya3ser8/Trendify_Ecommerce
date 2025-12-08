@@ -1,15 +1,17 @@
-import { DatePipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
+
 import { SubscriptionComponent } from "@shared/components/subscription/subscription.component";
+import { BlogCardComponent } from "./components/blog-card/blog-card.component";
+import { IBlog } from './models/iblog';
 
 @Component({
   selector: 'app-blog',
-  imports: [DatePipe, SubscriptionComponent],
+  imports: [SubscriptionComponent, BlogCardComponent],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
 export class BlogComponent {
-  blogList = signal([
+  blogList = signal<IBlog[]>([
     {
       image: '/images/blogs/blog-1.png',
       category: 'Fashion',

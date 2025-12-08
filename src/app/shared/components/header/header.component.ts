@@ -10,7 +10,7 @@ import { DrawerModule } from 'primeng/drawer';
 import { MenuModule } from 'primeng/menu';
 import { CartItemComponent } from "../cart-item/cart-item.component";
 import { EmptyStateComponent } from "../empty-state/empty-state.component";
-import { WishlistService } from '@features/products/fav-product/services/wishlist.service';
+import { WishlistService } from '@features/products/services/wishlist.service';
 
 @Component({
   selector: 'app-header',

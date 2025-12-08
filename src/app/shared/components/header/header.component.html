@@ -19,7 +19,7 @@
           <p-menu #menu [popup]="true" [model]="items" appendTo="body"></p-menu>
         </li>
         <li>
-          <a routerLink="/products/fav" class="text-main">
+          <a routerLink="/products/wishlist" class="text-main">
             <i class="fa-regular fa-heart text-2xl"></i>
           </a>
         </li>
@@ -56,7 +56,7 @@
       <span class="text-secondary text-lg font-medium">Total</span>
       <span class="text-main font-semibold">{{cartDetails().data.totalCartPrice || 0 }} EGP</span>
     </div>
-    <button (click)="visible = false" routerLink="/cart" class="btn rounded-lg">
+    <button (click)="visible = false" routerLink="/cart" class="btn_primary rounded-lg">
       Proceed to Checkout
       <i class="fa-solid fa-arrow-right"></i>
     </button>

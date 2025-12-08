@@ -1,0 +1,48 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="flex flex-col gap-6">
+  <app-input
+    [id]="'name'"
+    [type]="'text'"
+    [label]="'Name'"
+    [control]="form.get('name')"
+    formControlName="name"
+    [errors]="{
+      'required': 'name is required'
+    }"
+  />
+  <app-input
+    [id]="'email'"
+    [type]="'email'"
+    [label]="'Email'"
+    [control]="form.get('email')"
+    formControlName="email"
+    [errors]="{
+      'required': 'email is required',
+      'email': 'enter valid email'
+    }"
+  />
+  <div class="relative">
+    <app-input
+      [id]="'password'"
+      [label]="'Password'"
+      [control]="form.get('password')"
+      formControlName="password"
+      [readonly]="true"
+      [errors]="{
+        'required': 'password is required'
+      }"
+    />
+    <button type="button" (click)="openModal.emit()" class="absolute end-4 top-3 cursor-pointer underline text-main">change</button>
+  </div>
+  <app-input
+    [id]="'phone'"
+    [type]="'tel'"
+    [label]="'Phone'"
+    [control]="form.get('phone')"
+    formControlName="phone"
+    [errors]="{
+      'required': 'phone is required',
+      'pattern': 'accept only egypt phone'
+    }"
+  />
+  <button type="submit" class="btn_primary rounded-lg"> Save </button>
+</form>

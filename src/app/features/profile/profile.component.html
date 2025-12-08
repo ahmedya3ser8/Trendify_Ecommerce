@@ -1,99 +1,12 @@
 <section class="mt-16 py-14 w-full lg:max-w-4xl mx-auto">
   <div class="container bg-white py-10 px-10 rounded-lg">
     <h2 class="text-2xl text-secondary font-medium mb-6">Personal Information</h2>
-    <form [formGroup]="profileform" (ngSubmit)="submitProfileForm()" class="flex flex-col gap-6">
-      <app-basic-input
-        [id]="'name'"
-        [type]="'text'"
-        [label]="'Name'"
-        [control]="profileform.get('name')"
-        formControlName="name"
-        [errors]="{
-          'required': 'name is required'
-        }"
-      />
-      <app-basic-input
-        [id]="'email'"
-        [type]="'email'"
-        [label]="'Email'"
-        [control]="profileform.get('email')"
-        formControlName="email"
-        [errors]="{
-          'required': 'email is required',
-          'email': 'enter valid email'
-        }"
-      />
-      <div class="relative">
-        <app-basic-input
-          [id]="'password'"
-          [label]="'Password'"
-          [control]="profileform.get('password')"
-          formControlName="password"
-          [readonly]="true"
-          [errors]="{
-            'required': 'password is required'
-          }"
-        />
-        <button type="button" (click)="toggleModal()" class="absolute end-4 top-3 cursor-pointer underline text-main">change</button>
-      </div>
-      <app-basic-input
-        [id]="'phone'"
-        [type]="'tel'"
-        [label]="'Phone'"
-        [control]="profileform.get('phone')"
-        formControlName="phone"
-        [errors]="{
-          'required': 'phone is required',
-          'pattern': 'accept only egypt phone'
-        }"
-      />
-      <button type="submit" class="btn rounded-lg"> Save </button>
-    </form>
+    <app-profile-form (openModal)="openChangePassModal.set(true)" />
   </div>
 </section>
 
-@if (openModal()) {
-  <div class="fixed inset-0 bg-black/50 flex justify-center items-center z-9999">
-    <div class="bg-white p-5 w-[95%] md:w-md flex flex-col gap-6">
-      <button (click)="closeModal()" class="ml-auto">
-        <i class="fa-regular fa-circle-xmark text-secondary text-2xl cursor-pointer"></i>
-      </button>
-      <h3 class="text-secondary text-xl font-medium text-center">Change Password</h3>
-      <form [formGroup]="changePasswordForm" (ngSubmit)="submitChangePasswordForm()" class="flex flex-col gap-4">
-        <app-basic-input
-          [id]="'currentPassword'"
-          [label]="'Current Password'"
-          [control]="changePasswordForm.get('currentPassword')"
-          formControlName="currentPassword"
-          [maskPassword]="true"
-          [errors]="{
-            'required': 'current Password is required'
-          }"
-        />
-        <app-basic-input
-          [id]="'newPassword'"
-          [label]="'Password'"
-          [control]="changePasswordForm.get('password')"
-          formControlName="password"
-          [maskPassword]="true"
-          [errors]="{
-            'required': 'Password is required',
-            'pattern': 'Password must start with upperCase then any 6 chars or more'
-          }"
-        />
-        <app-basic-input
-          [id]="'rePassword'"
-          [label]="'Confirm Password'"
-          [control]="changePasswordForm.get('rePassword')"
-          formControlName="rePassword"
-          [maskPassword]="true"
-          [errors]="{
-            'required': 'confirm Password is required',
-            'mismatch': 'Password and confirmPassword dosen\'t match'
-          }"
-        />
-        <button type="submit" class="btn rounded-lg">Change</button>
-      </form>
-    </div>
-  </div>
+@if (openChangePassModal()) {
+  <app-change-password-modal
+    (closeModal)="openChangePassModal.set(false)"
+  />
 }

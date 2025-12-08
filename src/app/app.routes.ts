@@ -7,12 +7,6 @@ import { MainLayoutsComponent } from '@core/layouts/main-layouts/main-layouts.co
 
 export const appRoutes: Routes = [
   {
-    path: 'auth',
-    component: AuthLayoutsComponent,
-    loadChildren: () => import('./features/auth/auth.routes').then(r => r.authRoutes),
-    canActivate: [isLoggedInGuard]
-  },
-  {
     path: '',
     component: MainLayoutsComponent,
     canActivate: [authGuard],
@@ -59,6 +53,12 @@ export const appRoutes: Routes = [
         loadChildren: () => import('./features/products/products.routes').then(r => r.productsRoutes)
       },
     ]
+  },
+  {
+    path: 'auth',
+    component: AuthLayoutsComponent,
+    canActivate: [isLoggedInGuard],
+    loadChildren: () => import('./features/auth/auth.routes').then(r => r.authRoutes)
   },
   {
     path: '**',

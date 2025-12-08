@@ -1,0 +1,5 @@
+:host ::ng-deep .p-floatlabel-on:has(input.p-filled) label,
+:host ::ng-deep .p-floatlabel-on:has(input:focus) label {
+  padding: 0px 8px !important;
+  color: var(--color-secondary) !important;
+}

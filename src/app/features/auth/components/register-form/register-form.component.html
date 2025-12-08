@@ -1,0 +1,67 @@
+<div class="col flex flex-col px-8 sm:px-10 lg:px-14 xl:px-16 2xl:px-20">
+  <div class="main_title flex flex-col gap-2 mb-4">
+    <h2 class="text-secondary text-3xl font-bold">Create a Account</h2>
+    <p class="text-gray-400 text-sm">Create a new account</p>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="submitForm()" class="flex flex-col gap-5">
+    <app-input
+      [id]="'name'"
+      [type]="'text'"
+      [label]="'Name'"
+      formControlName="name"
+      [control]="form.get('name')"
+      [errors]="{
+        'required': 'name is required'
+      }"
+    />
+    <app-input
+      [id]="'email'"
+      [type]="'email'"
+      [label]="'Email'"
+      formControlName="email"
+      [control]="form.get('email')"
+      [errors]="{
+        'required': 'email is required',
+        'email': 'enter valid email'
+      }"
+    />
+    <app-input
+      [id]="'password'"
+      [label]="'Password'"
+      [control]="form.get('password')"
+      formControlName="password"
+      [maskPassword]="true"
+      [errors]="{
+        'required': 'password is required',
+        'pattern': 'Password must start with upperCase then any 6 chars or more'
+      }"
+    />
+    <app-input
+      [id]="'rePassword'"
+      [label]="'Confirm Password'"
+      [control]="form.get('rePassword')"
+      formControlName="rePassword"
+      [maskPassword]="true"
+      [errors]="{
+        'required': 'confirm Password is required',
+        'mismatch': 'Password and confirmPassword dosen\'t match'
+      }"
+    />
+    <app-input
+      [id]="'phone'"
+      [type]="'tel'"
+      [label]="'Phone'"
+      formControlName="phone"
+      [control]="form.get('phone')"
+      [errors]="{
+        'required': 'phone is required',
+        'pattern': 'accept only egypt phone'
+      }"
+    />
+    <button type="submit" class="btn_primary"> Register </button>
+  </form>
+  <p class="mt-2.5 text-center">
+    Already have an account ?
+    <a routerLink="/auth/login" class="text-main underline cursor-pointer">Login</a>
+  </p>
+</div>

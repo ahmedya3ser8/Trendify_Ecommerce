@@ -1,0 +1,100 @@
+<section class="py-14 mt-16">
+  <div class="container">
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="col bg-white flex-1 flex flex-col gap-6 p-5">
+        <div class="flex flex-col gap-2">
+          <h3 class="text-secondary text-xl font-semibold">Delivery Address</h3>
+          <p class="text-gray-600 text-sm">
+            <i class="fa-solid fa-location-dot"></i>
+            Delivery to Mansoura, Abdel Salam Aref Street
+          </p>
+        </div>
+        <form [formGroup]="form" class="flex flex-col gap-4">
+          <div class="w-full">
+            <div class="floating-label-group">
+              <textarea
+                id="details"
+                formControlName="details"
+                class="floating-input h-28! resize-none"
+                [class.border-red-500!]="isInvalid('details')"
+                placeholder=" "
+              ></textarea>
+              <label for="details" class="floating-label" [class.text-red-500!]="isInvalid('details')"> Details </label>
+            </div>
+            @if (form.get('details')?.errors && form.get('details')?.touched) {
+              <p class="text-red-500 text-sm mt-1 lowercase"> details is required </p>
+            }
+          </div>
+          <app-input
+            [id]="'phone'"
+            [type]="'tel'"
+            [label]="'Phone Number'"
+            [control]="form.get('phone')"
+            formControlName="phone"
+            [errors]="{
+              'required': 'phone is required',
+              'pattern': 'accept only egypt phone'
+            }"
+          />
+          <app-input
+            [id]="'city'"
+            [type]="'text'"
+            [label]="'City'"
+            [control]="form.get('city')"
+            formControlName="city"
+            [errors]="{
+              'required': 'city is required'
+            }"
+          />
+        </form>
+        <div class="flex flex-col gap-4">
+          <h4 class="text-secondary text-xl font-semibold">Delivery Method</h4>
+          <div class="delivery h-14 px-4 border border-gray-300 rounded-lg flex items-center gap-3 transition duration-300">
+            <input type="radio" (click)="paymentMethod($event)" checked value="online" class="size-6 accent-main" name="paymentMethod" id="onlinePayment" />
+            <label for="onlinePayment" class="w-full h-full py-4 text-secondary cursor-pointer">Online Payment</label>
+          </div>
+          <div class="delivery h-14 px-4 border border-gray-300 rounded-lg flex items-center gap-3 transition duration-300">
+            <input type="radio" (click)="paymentMethod($event)" value="cash" class="size-6 accent-main" name="paymentMethod" id="cashPayment" />
+            <label for="cashPayment" class="w-full h-full py-4 text-secondary cursor-pointer">Cash Payment</label>
+          </div>
+        </div>
+      </div>
+      <div class="col bg-white w-full md:w-md border border-gray-300 rounded-md p-5 flex flex-col gap-4 h-fit">
+        <div class="flex flex-col gap-4 border-b border-gray-300 pb-5">
+          <h3 class="text-secondary text-xl font-semibold">Coupon Code</h3>
+          <div class="flex gap-2">
+            <input type="text" class="flex-1 h-12 p-2 border border-main outline-none rounded-lg" placeholder="Enter Your Code" />
+            <button class="w-20 bg-main text-white rounded-lg cursor-pointer">Apply</button>
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 border-b border-gray-300 pb-5">
+          <h3 class="text-secondary text-xl font-semibold">Order Summary</h3>
+          <ul class="flex flex-col gap-2">
+            <li class="flex justify-between items-center">
+              <span class="text-gray-500">Total</span>
+              <span class="text-main font-medium">{{cartDetails().data.totalCartPrice}} EGP</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <span class="text-gray-500">Total Shipping Cost</span>
+              <span class="text-main font-medium">{{(cartDetails().data.totalCartPrice * (10 / 100)).toFixed(2)}} EGP</span>
+            </li>
+          </ul>
+          <p class="text-sm text-gray-500">
+            <i class="fa-solid fa-truck-fast"></i>
+            Delivery between September 1 and September 7
+          </p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div class="flex justify-between items-center">
+            <span class="text-secondary text-lg font-medium">Total</span>
+            <span class="text-main font-semibold">{{(cartDetails().data.totalCartPrice + cartDetails().data.totalCartPrice * (10 / 100)).toFixed(2)}} EGP</span>
+          </div>
+          <button (click)="submitForm()" class="btn_primary rounded-lg">
+            Payment
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

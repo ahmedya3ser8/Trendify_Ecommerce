@@ -1,0 +1,38 @@
+<div class="col flex flex-col px-8 sm:px-10 lg:px-14 xl:px-16 2xl:px-20">
+  <div class="main_title flex flex-col gap-2 mb-8">
+    <h2 class="text-secondary text-3xl font-bold">Welcome Back!</h2>
+    <p class="text-gray-400 text-sm">Please log in or sign up to continue using our app.</p>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="submitForm()" class="flex flex-col gap-6">
+    <app-input
+      [id]="'email'"
+      [type]="'email'"
+      [label]="'Email'"
+      formControlName="email"
+      [control]="form.get('email')"
+      [errors]="{
+        'required': 'email is required',
+        'email': 'enter valid email'
+      }"
+    />
+    <app-input
+      [id]="'password'"
+      [label]="'Password'"
+      [control]="form.get('password')"
+      formControlName="password"
+      [maskPassword]="true"
+      [errors]="{
+        'required': 'password is required',
+        'pattern': 'Password must start with upperCase then any 6 chars or more'
+      }"
+    />
+    <a routerLink="/auth/forget-password" class="text-main w-fit text-lg ml-auto cursor-pointer">
+      Forgot Password?
+    </a>
+    <button type="submit" class="btn_primary"> Login </button>
+  </form>
+  <p class="mt-2.5 text-center">
+    Don't have an account ?
+    <a routerLink="/auth/register" class="text-main underline cursor-pointer">Register</a>
+  </p>
+</div>
