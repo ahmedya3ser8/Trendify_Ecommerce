@@ -7,6 +7,7 @@ import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angu
 import { errorsInterceptor } from '@core/interceptors/errors.interceptor';
 import { headersInterceptor } from '@core/interceptors/headers.interceptor';
 import { loadingInterceptor } from '@core/interceptors/loading.interceptor';
+
 import Aura from '@primeuix/themes/aura';
 import { CookieService } from 'ngx-cookie-service';
 import { provideToastr } from 'ngx-toastr';
@@ -18,7 +19,11 @@ import { NgxSpinnerService } from "ngx-spinner";
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appRoutes, withViewTransitions(), withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
+    provideRouter(
+      appRoutes,
+      withViewTransitions(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'top' })
+    ),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch(), withInterceptors([headersInterceptor, loadingInterceptor, errorsInterceptor])),
     provideAnimationsAsync(),

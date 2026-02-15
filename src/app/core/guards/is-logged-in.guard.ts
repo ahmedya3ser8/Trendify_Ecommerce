@@ -1,14 +1,20 @@
-import { inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, PLATFORM_ID } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-
-import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '@features/auth/services/auth.service';
 
 export const isLoggedInGuard: CanActivateFn = (route, state) => {
-  const cookieService = inject(CookieService);
+  const authService = inject(AuthService);
   const router = inject(Router);
-  if (cookieService.check('access_token')) {
-    return router.parseUrl('/home');
-  } else {
+  const platformId = inject(PLATFORM_ID);
+
+  if (!isPlatformBrowser(platformId)) {
     return true;
   }
+
+  if (authService.isAuthenticated()) {
+    return router.parseUrl('/home');
+  }
+
+  return true;
 };
